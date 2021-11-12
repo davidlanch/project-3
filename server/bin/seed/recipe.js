@@ -27,7 +27,7 @@ const fetchRecipes = () => {
 
           // 1 - Formatting the category 
           const allMeats = ["Goat", "Beef", "Pork", "Chicken", "Lamb"];
-          let formattedCategory
+          let formattedCategory 
           if (allMeats.includes(recipe.strCategory)) {
               formattedCategory = "Meat";
           } else {

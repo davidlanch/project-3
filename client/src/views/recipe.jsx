@@ -1,18 +1,15 @@
-// custom tools
+
 import React, { Component } from "react";
-import APIHandler from "../api/handler";
+
 
 export default class Recipe extends Component {
   // console.log(props.match.params.id)
  
   render () {
-    console.log("REQ USER", this.props)
-    if ( this.state.name === "") {
-      return <p>loading</p>;
-      
-    }
+  
     return (
     <>
+<<<<<<< HEAD
       <h1 className="title">{this.state.name}</h1>
       <p>
       music style: {this.state.style}<br/>
@@ -49,8 +46,10 @@ export default class Recipe extends Component {
 
 
       
+=======
+      <h1 className="title">hola</h1>
+>>>>>>> 41f59b91530bc21ba74249964aa67625c3c8fd39
 
-     
     </>
   );
 }
