@@ -11,7 +11,6 @@ function App() {
   return (
     <div className="App">
       <NavMain />
-      <Recipes />
       <Switch>
         <Route to="/signin" ></Route>
         <Route path="/all-recipes/:id" component={OneRecipe} />
