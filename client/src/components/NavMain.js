@@ -4,6 +4,7 @@ import SignInButton from "./SignInButton";
 import "./../styles/NavMain.css";
 import { useAuth } from "./../auth/UserContext";
 import IconSignOut from "./IconSignOut";
+import ProfileMenu from "./ProfileMenu";
 
 
 export default function NavMain() {
@@ -44,7 +45,9 @@ export default function NavMain() {
 
       {isLoggedIn === true && (
         <>
-        <IconSignOut className="link signin"/>
+        <div>
+        <ProfileMenu/>
+        </div>
         </>
       )}
     </nav>

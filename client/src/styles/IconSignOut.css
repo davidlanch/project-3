@@ -1,4 +1,8 @@
 .icon-signout {
-    position: absolute;
-    right: 50px
+color: var(--white-color);
+cursor: pointer;
+}
+
+.icon-signout:hover {
+    color: black;
 }
