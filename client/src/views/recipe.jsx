@@ -9,46 +9,7 @@ export default class Recipe extends Component {
   
     return (
     <>
-<<<<<<< HEAD
-      <h1 className="title">{this.state.name}</h1>
-      <p>
-      music style: {this.state.style}<br/>
-      {this.state.description}
-      </p>
-
-      <h1 className="title diy">D.I.Y (Stars)</h1>
-      <p>
-        The Stars component allow the end-users to rate an artist/album.
-        <br />
-        The black stars represent the average rate for a given resource.
-        <br />
-        The yellow stars represent the logged in user rate.
-        <br />
-        Bonus: make it modular to rate labels/styles as well.
-      </p>
-
-      <hr />
-
-      <h1 className="title diy">D.I.Y (Discography)</h1>
-      <p>
-        Code a Discography component displaying all the albums related to the
-        current artist if any, <br />else display the appropriate message.
-        <br />
-      </p>
-      <hr />
-
-      <h1 className="title diy">D.I.Y (Comments)</h1>
-      <p>
-        Import a custom {`<Comments />`} allowing the end-users to post comments
-        related to the current artist.
-        <br />
-      </p>
-
-
-      
-=======
       <h1 className="title">hola</h1>
->>>>>>> 41f59b91530bc21ba74249964aa67625c3c8fd39
 
     </>
   );
