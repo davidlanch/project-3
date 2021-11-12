@@ -2,7 +2,7 @@ require("dotenv").config();
 require("./../../config/mongo"); // fetch the db connection
 const APIHandler = require("./../../config/APIHandler")
 
-const RecipeModel = require("./../../model/Recipe");
+const RecipeModel = require("./../../model/recipes");
 
 
 // TO DO: add user API Meal to all seed recipes
