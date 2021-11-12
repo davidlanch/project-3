@@ -10,8 +10,8 @@ const logger = require('morgan');
 const passport = require("passport"); // auth library (needs sessions)
 const cors = require("cors");
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+
+
 
 // ------------------------------------------
 // SERVER CONFIG
@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -58,5 +58,26 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+//------------------------------------------
+// SPLITED ROUTING
+// ------------------------------------------
+
+const indexRouter = require('./routes/index');
+const authRouter = require("./routes/auth");
+const commentsRouter = require("./routes/comments");
+const profileRouter = require("./routes/profile");
+const ratesRouter = require("./routes/rates");
+const recipesRouter = require("./routes/recipes");
+const searchRouter = require("./routes/search");
+
+app.use('/api', indexRouter);
+app.use('/api', authRouter);
+app.use('/api', commentsRouter);
+app.use('/api', profileRouter);
+app.use('/api', ratesRouter);
+app.use('/api', recipesRouter);
+app.use('/api', searchRouter);
 
 module.exports = app;

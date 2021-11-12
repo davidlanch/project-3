@@ -5,9 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
+  
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
