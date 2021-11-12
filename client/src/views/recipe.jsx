@@ -47,8 +47,7 @@ export default class Recipe extends Component {
         <br />
       </p>
 
-      <LabPreview name="artist"/>
-      <Comment idArtist={this.props.match.params.id} category="artist" />
+
       
 
      
