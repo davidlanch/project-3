@@ -6,6 +6,7 @@ const recipeSchema = new Schema({
   title: {
     type: String,
     required: true,
+    default: "No name recipe"
   },
 
   author: {

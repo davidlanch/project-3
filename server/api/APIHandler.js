@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require("axios");
 
 const APIHandler = (() => {
   return axios.create({
@@ -7,4 +7,4 @@ const APIHandler = (() => {
   });
 })();
 
-export default APIHandler;
+module.exports = APIHandler;
