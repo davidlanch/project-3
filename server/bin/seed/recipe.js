@@ -9,16 +9,13 @@ const RecipeModel = require("./../../model/recipes");
 
 
 const fetchRecipes = () => {
-
     //await RecipeModel.deleteMany(); // empty collection
     const allRecipes = [];
     //const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-    const alphabet = "ab".split("");
-
+    const alphabet = ["a"];
 
     // Here we will require from the API all the recipes which name starts with the letter "a", then "b", etc
     alphabet.forEach(async (letter) => {
-        
         try {
         // Getting an array or recipes starting with that letter
         const recipes = await APIHandler.get("search.php?f=" + letter);
@@ -73,9 +70,11 @@ const fetchRecipes = () => {
 };
 
 async function insertRecipes(recipes) {
-  const inserted = await RecipeModel.insertMany(recipes); // insert docs in db
-  console.log(`seed recipes done : ${inserted.length} documents inserted !`);
-  process.exit();
+  try {
+    const inserted = await RecipeModel.insertMany(recipes); // insert docs in db
+    console.log(`seed recipes done : ${inserted.length} documents inserted !`);
+    process.exit();
+  } catch (err) {console.error(err)}
 }
 
 insertRecipes(fetchRecipes())
