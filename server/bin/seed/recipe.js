@@ -1,6 +1,6 @@
 require("dotenv").config();
 require("./../../config/mongo"); // fetch the db connection
-const APIHandler = require("./../../config/APIHandler")
+const APIHandler = require("./../../api/APIHandler")
 
 const RecipeModel = require("./../../model/recipes");
 
@@ -8,21 +8,24 @@ const RecipeModel = require("./../../model/recipes");
 // TO DO: add user API Meal to all seed recipes
 
 
-async function fetchRecipes() {
-
-  try {
+const fetchRecipes = () => {
 
     //await RecipeModel.deleteMany(); // empty collection
     const allRecipes = [];
-    const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+    //const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+    const alphabet = "ab".split("");
+
 
     // Here we will require from the API all the recipes which name starts with the letter "a", then "b", etc
-    alphabet.forEach((letter) => {
-
-        // Getting one recipe
+    alphabet.forEach(async (letter) => {
+        
+        try {
+        // Getting an array or recipes starting with that letter
         const recipes = await APIHandler.get("search.php?f=" + letter);
+        //const recipes = await APIHandler.get("random.php");
 
-        recipes.meals.forEach((recipe) => {
+        console.log("this is what the API gives us: ", recipes)
+        recipes.data.meals.forEach((recipe) => {
           // Formatting the recipe - many steps to this one -------------------------
 
           // 1 - Formatting the category 
@@ -57,16 +60,16 @@ async function fetchRecipes() {
               ingredients: allIngredients,
               quantities: allQuantities
           }
-          console.log(formattedRecipe)
+          //console.log(formattedRecipe)
 
           // Adding the formatted Recipe to the array of recipes
           allRecipes.push(formattedRecipe)
         })
-    })
 
-  } catch (err) {
-    console.error(err);
-  }
+        } catch (err) {
+          console.error(err);
+        }
+      })
 };
 
 async function insertRecipes(recipes) {
