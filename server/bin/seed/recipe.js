@@ -4,63 +4,75 @@ const APIHandler = require("./../../config/APIHandler")
 
 const RecipeModel = require("./../../model/Recipe");
 
-async function fetchRecipes(numberOfRecipes) {
+
+// TO DO: add user API Meal to all seed recipes
+
+
+async function fetchRecipes() {
+
   try {
+
     //await RecipeModel.deleteMany(); // empty collection
     const allRecipes = [];
-    const alphabet = "abcdefghijklmnopqrstuvwxyz"
+    const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
-    // Here we will require from the API the desired number of recipes, one by one
+    // Here we will require from the API all the recipes which name starts with the letter "a", then "b", etc
     alphabet.forEach((letter) => {
 
         // Getting one recipe
-        const randomAPIRecipe = await APIHandler.get("random.php");
+        const recipes = await APIHandler.get("search.php?f=" + letter);
 
-        // testing whether I already got this 
+        recipes.meals.forEach((recipe) => {
+          // Formatting the recipe - many steps to this one -------------------------
 
-        // Formatting the recipe - many steps to this one -------------------------
+          // 1 - Formatting the category 
+          const allMeats = ["Goat", "Beef", "Pork", "Chicken", "Lamb"];
+          let formattedCategory
+          if (allMeats.includes(recipe.strCategory)) {
+              formattedCategory = "Meat";
+          } else {
+              formattedCategory = recipe.strCategory;
+          }
+          
+          // Formatting the ingredients
 
-        // 1 - Formatting the category 
-        const allMeats = ["Goat", "Beef", "Pork", "Chicken", "Lamb"];
-        let formattedCategory
-        if (allMeats.includes(randomAPIRecipe.strCategory)) {
-            formattedCategory = "Meat"
-        } else {
-            formattedCategory = randomAPIRecipe.strCategory
-        }
-        
-        // Formatting the ingredients
+          let counter = 1;
+          let allIngredients =[]; let ingredient;
+          let allQuantities = []; let quantity;
+          do {
+            ingredient = meal["strIngredient" + String(counter)]
+            quantity = meal["strMeasure" + String(counter)]
+            allIngredients.push(ingredient);
+            allQuantities.push(quantity);
+            counter += 1;
+          }
+          while (
+            counter <= 20 && ingredient.length
+          )
 
-        for (let j = 0; j < 20; j++)
+          const formattedRecipe = {
+              title: recipe.strMeal,
+              instructions: recipe.strInstructions,
+              image: recipe.strMealThumb,
+              ingredients: allIngredients,
+              quantities: allQuantities
+          }
+          console.log(formattedRecipe)
 
-        const formattedRecipe = {
-            title: randomAPIRecipe.strMeal,
-            instructions: randomAPIRecipe.strInstructions,
-            image: randomAPIRecipe.strMealThumb,
-        }
-
-        // Adding the formatted Recipe to the array that we want to 
-        randomRecipes.push()
+          // Adding the formatted Recipe to the array of recipes
+          allRecipes.push(formattedRecipe)
+        })
     })
 
-    const artists = await Promise.all([
-      ArtistModel.findOne({ name: "wu tang clan" }),
-      ArtistModel.findOne({ name: "aphex twin" }),
-      ArtistModel.findOne({ name: "bad brains" }),
-    ]);
-
-    
-
-    const inserted = await AlbumModel.insertMany(albums); // insert docs in db
-    console.log(`seed albums done : ${inserted.length} documents inserted !`);
-    process.exit();
   } catch (err) {
     console.error(err);
   }
 };
 
 async function insertRecipes(recipes) {
-
+  const inserted = await RecipeModel.insertMany(recipes); // insert docs in db
+  console.log(`seed recipes done : ${inserted.length} documents inserted !`);
+  process.exit();
 }
 
-insertRecipes(fetchRecipes(100))
+insertRecipes(fetchRecipes())
