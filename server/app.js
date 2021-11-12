@@ -1,17 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require("dotenv").config(); // import all key/value pairs from .env in process.env : really usefull when going online :)
+require("./config/mongo"); // database connection setup
+require("./config/passport");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const passport = require("passport"); // auth library (needs sessions)
+const cors = require("cors");
 
-var app = express();
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// ------------------------------------------
+// SERVER CONFIG
+// ------------------------------------------
+const app = express();
+
+// la doc dit : npx express-generator --no-view 
+// comme ça pas de jade etc
+// pour la prochaine fois ;)
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -26,6 +35,18 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+// ------------------------------
+// SETUP the CORS rules here !!!
+// ------------------------------
+
+const corsOptions = {
+  origin: [process.env.CLIENT_URL],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 // error handler
 app.use(function(err, req, res, next) {
