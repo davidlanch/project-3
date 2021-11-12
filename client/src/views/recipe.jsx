@@ -10,7 +10,7 @@ export default class Recipe extends Component {
     return (
     <>
       <div>
-        
+        Holaaaa
       </div>
 
     </>
