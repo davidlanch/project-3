@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-
+import NavigationArrow from "./../components/NavigationArrow"
 
 export default class Recipe extends Component {
   // console.log(props.match.params.id)
@@ -9,7 +9,9 @@ export default class Recipe extends Component {
   
     return (
     <>
-      <h1 className="title">hola</h1>
+      <div>
+        
+      </div>
 
     </>
   );
