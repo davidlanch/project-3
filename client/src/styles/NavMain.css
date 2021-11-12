@@ -1,21 +1,44 @@
 .nav {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    background-color: var(--orange-color);
+    /* justify-content: space-evenly; */
+    background-color: var(--white-color);
     height: 10vh;
     padding: 10px;
     -webkit-animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
+.title-logo {
+  width: 120px;
+}
 .logo-fridge {
     width: 60px;
 }
 
+.link.title {
+  font-size: 25px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.link.signin {
+  position: absolute;
+  right: 50px
+}
+
+.link.logo {
+  position: absolute;
+  left: 50px;
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
 .link {
     text-decoration: none;
-    color: whitesmoke
+    color:var(--orange-color);
+    font-size: 19px;
 }
 
 .link:hover {
