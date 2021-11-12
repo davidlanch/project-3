@@ -1,5 +1,4 @@
 require("dotenv").config();
-require("./../../config/mongo"); // fetch the db connection
 const APIHandler = require("./../../api/APIHandler")
 
 const RecipeModel = require("./../../model/recipes");
