@@ -1,0 +1,48 @@
+.simple-card {
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+}
+
+.simple-card:hover {
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.45);
+}
+.simple-card img {
+    width: 40%;
+    border-radius: 10px;
+}
+/* .simple-card img:hover {
+    opacity: 90%;
+} */
+
+.title-simple-card {
+    font-size: 25px;
+    color: var(--orange-color);
+    width: 400px;
+    height: 87px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+}
+
+.title-difficulty {
+    margin: 0;
+}
+
+.simple-card .link {
+    text-decoration: none;
+    color: black;
+
+}
+
+.title-simple-card:hover {
+    text-decoration: underline var(--orange-color)
+}
+

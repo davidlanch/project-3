@@ -116,7 +116,7 @@ class Signup extends Component {
         <button className="btn">ok</button>
         <p className="parag">
           Already a member ? please{" "}
-          <Link to="/signin" className="link">
+          <Link to="/sign-in" className="linksign">
             sign in
           </Link>
         </p>

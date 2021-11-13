@@ -50,6 +50,16 @@
     color: var(--white-color);
     font-size: 15px;
     padding: 5px;
-
 }
 
+.linksign {
+    color: var(--orange-color);
+    font-size: 20px;
+    padding: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.linksign:hover {
+    font-weight: bolder;
+}

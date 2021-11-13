@@ -51,7 +51,7 @@ export default function Signin(props) {
       <button className="btn">ok</button>
       <p className="parag">
         No account yet ? please{" "}
-        <Link to="/signup" className="link">
+        <Link to="/signup" className="linksign">
           sign up
         </Link>
       </p>

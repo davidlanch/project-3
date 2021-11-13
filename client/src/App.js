@@ -10,6 +10,7 @@ import SignUp from "./views/SignUp";
 import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { UserContextProvider } from "./auth/UserContext";
 import Footer from "./components/Footer";
+import AllRecipes from "./views/AllRecipes";
 function App() {
   return (
     <UserContextProvider>
@@ -21,7 +22,8 @@ function App() {
           <Route path="/sign-in" component={Signin}></Route>
           <Route path="/signup" component={SignUp}></Route>
           <Route path="/dashboard" component={OneRecipe} />
-          <Route path="/all-recipes" component={OneRecipe} />
+          <Route path="/all-recipes/:id" component={OneRecipe} />
+          <Route path="/all-recipes" component={AllRecipes} />
           <Route path="*" component={NotFound} />
         </Switch>
 </div>
