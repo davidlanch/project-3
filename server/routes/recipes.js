@@ -7,6 +7,17 @@ const recipeModel = require("./../model/recipes")
 const userModel = require("./../model/users")
 
 
+  
+  router.get("/all-recipes/:id", (req, res) => {
+    console.log("REQ BODY", req.params.id)
+    recipeModel
+      .findById(req.params.id)
+      .then((recipe) => res.status(200).json(recipe))
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+  
 
 
 

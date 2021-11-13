@@ -13,7 +13,7 @@ function App() {
       <NavMain />
       <Switch>
         <Route path="/signin" ></Route>
-        <Route path="/all-recipes" component={OneRecipe} />
+        <Route path="/all-recipes/:id" component={OneRecipe} />
         <Route path="*" component={NotFound} />
       </Switch>
       
