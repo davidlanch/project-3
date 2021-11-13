@@ -1,0 +1,8 @@
+.icon-signout {
+color: var(--white-color);
+cursor: pointer;
+}
+
+.icon-signout:hover {
+    color: black;
+}
