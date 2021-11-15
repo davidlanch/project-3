@@ -5,7 +5,7 @@ function SearchIngredients(props) {
 
     const [ingredients, setIngredients] = useState([""]);
 
-    console.log("the ingredients are: ", ingredients)
+    // console.log("the ingredients are: ", ingredients)
 
     const addIngredientBar = (e) => {
         e.preventDefault()
@@ -27,20 +27,19 @@ function SearchIngredients(props) {
 
     const findRecipe = (e) => {
         e.preventDefault()
-        props.history.push("/all-recipes?" + ingredients[0]+"&")
+        props.history.push("/all-recipes")
         console.log("recipe submitted")
     }
 
     return (
         <div>
-            <img src="title-bon-app.png" alt="BonApp" />
-            <p>Add your ingredients!</p>
             <form onSubmit={findRecipe}>
                 {
                     ingredients.map((el, index) => {
                         return( <React.Fragment key={index}>
-                                <input type="text" value={ingredients[index]} onChange={(evt) => handleChange(evt, index)} />
+                                <input name="ingredient" type="text" value={ingredients[index]} onChange={(evt) => handleChange(evt, index)} />
                                 <button onClick={(evt) => removeIngredientBar(evt, index)}><i className="fas fa-trash-alt"></i></button>
+                                <br/>
                                 </React.Fragment>
                         )
                     })

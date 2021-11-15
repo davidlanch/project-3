@@ -1,0 +1,33 @@
+.search-menu {
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.filter-menu {
+    display: flex;
+}
+
+.ingredients-menu {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.category-menu {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.all-categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.one-category {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
