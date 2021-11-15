@@ -10,9 +10,12 @@ export default class AllRecipes extends Component {
       }
     
       componentDidMount() {
-        APIHandler.get("/all-recipes").then((response) => {
+        APIHandler.get("/all-recipes")
+        .then((response) => {
           this.setState({ recipes: response.data });
-        })}
+          console.log(response.data)
+        })
+    .catch((error) => console.error(error))}
 
     render() {
         if (!this.state.recipes) return <div>loading</div>

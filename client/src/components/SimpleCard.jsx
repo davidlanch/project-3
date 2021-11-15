@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import "./../styles/SimpleCard.css";
 import Favorite from './Favorite';
+import { useAuth } from "./../auth/UserContext";
+
 
 export default class SimpleCard extends Component {
     render() {
