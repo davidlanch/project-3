@@ -7,7 +7,7 @@ const recipeModel = require("./../model/recipes")
 const userModel = require("./../model/users")
 const uploader = require("./../config/cloudinary");
 
-router.post("/", uploader.single("image"), async (req, res, next) => {
+router.post("/recipe/create", uploader.single("image"), async (req, res, next) => {
   console.log(req.file);
   try {
     const newRecipe = await recipeModel.create({ ...req.body, image: req.file.path }); //  req.file.path  => provided by cloudinary's response
@@ -26,6 +26,7 @@ router.get("/all-recipes/:id([a-z0-9]{24})", (req, res) => {
       console.error(err);
     });
 })
+
 
 router.get("/all-recipes?:query", (req, res) => {
     // console.log("this is the req query category", req.query.category)

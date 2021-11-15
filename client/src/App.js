@@ -8,7 +8,7 @@ import NotFound from "./views/NotFound";
 import Home from "./views/Home";
 import Signin from "./views/SignIn";
 import SignUp from "./views/SignUp";
-import { ProtectedRoute } from "./auth/ProtectedRoute";
+//import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { UserContextProvider } from "./auth/UserContext";
 import Footer from "./components/Footer";
 import AllRecipes from "./views/AllRecipes";
