@@ -9,7 +9,7 @@ export default class AllRecipes extends Component {
     super(props);
     this.state = {
       recipes: null,
-      nameFilter: "all",
+      nameFilter: null,
       ingredientFilter: [],
       categoryFilter: []
     };
