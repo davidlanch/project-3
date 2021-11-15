@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/sign-in" component={Signin}></Route>
           <Route path="/signup" component={SignUp}></Route>
-          <Route path="/profile/my-recipes" component={MyRecipes} />
+          <Route exact path="/profile/my-recipes" component={MyRecipes} />
           <Route path="/profile/my-recipes/create" component ={CreateForm} />   
           <Route path="/profile/my-profile" component={MyProfile} />
           <Route path="/profile/my-favourites" component={MyFavourites} />
