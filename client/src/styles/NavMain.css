@@ -1,9 +1,9 @@
 .nav {
     display: flex;
     align-items: center;
-    /* justify-content: space-evenly; */
+    justify-content: space-between;
     background-color: var(--white-color);
-    height: 10vh;
+    height: 8vh;
     padding: 10px;
     -webkit-animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -19,6 +19,7 @@
 .link.title {
   font-size: 25px;
   position: absolute;
+  color: var(--orange-color);
   left: 50%;
   transform: translate(-50%);
 }

@@ -1,4 +1,6 @@
 .signin {
+    /* position: relative;
+    left: 30px; */
     display: flex;
     justify-content: space-evenly;
     /* gap: 10px; */
