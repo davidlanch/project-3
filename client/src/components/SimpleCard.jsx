@@ -9,7 +9,7 @@ export default class SimpleCard extends Component {
     render() {
         return (
             <div className="simple-card">
-            <Favorite id={this.props.recipe._id}/>
+            {/* <Favorite id={this.props.recipe._id}/> */}
             <Link to={"/all-recipes/" + this.props.recipe._id} className="link">
             <div className="image-recipe">
             
