@@ -8,7 +8,7 @@ function Recipe(props) {
   console.log(props);
   // Similar a componentDidMount y componentDidUpdate:
   useEffect(() => {
-    APIHandler.get("/api/all-recipes/" + props.match.params.id)
+    APIHandler.get("/all-recipes/" + props.match.params.id)
       .then((res) => {
         console.log(res);
       })
