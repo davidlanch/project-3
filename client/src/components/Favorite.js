@@ -22,12 +22,12 @@ export default function Favorite(props) {
   const handleClick = () => {
     if (isFavorite === true) {
       removeFromFavorite();
-      console.log("user id", currentUser._id, "recipe id", props.id)
+      // console.log("user id", currentUser._id, "recipe id", props.id)
       
     } else {
       addtoFavorite();
       setFavorite(!isFavorite)
-      console.log("user id", currentUser._id, "recipe id", props.id)
+      // console.log("user id", currentUser._id, "recipe id", props.id)
     }
 
   }

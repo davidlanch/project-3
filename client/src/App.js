@@ -35,7 +35,7 @@ function App() {
           <Route path="/profile/my-profile" component={MyProfile} />
           <Route path="/profile/my-favourites" component={MyFavourites} />
           <Route path="/all-recipes/:id" component={OneRecipe} />
-          <Route path="/all-recipes" component={AllRecipes} />
+          <Route exact path="/all-recipes" component={AllRecipes} />
           <Route path="*" component={NotFound} />
         </Switch>
 </div>
