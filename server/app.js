@@ -57,12 +57,12 @@ app.use(passport.session());
 if (_DEVMODE === true) {
   app.use(function devMode(req, res, next) {
     req.user = {
-      _id: "5de9c376fa023e21a766a606",
-      username: "marie",
-      email: "marie@foo.bar",
+      _id: "618e776f51691f42b9050f3f",
+      username: "admin",
+      email: "admin@foobarbaz.io",
       avatar:
-        "https://res.cloudinary.com/gdaconcept/image/upload/v1575298339/user-pictures/jadlcjjnspfhknucjfkd.png",
-      favorites: ["5e53b3e1ed3e704208600e46"],
+        "https://cdn.onlinewebfonts.com/svg/img_258083.png",
+      favorites: ["618e8575e1c403fe7e972837"],
     };
 
     next();

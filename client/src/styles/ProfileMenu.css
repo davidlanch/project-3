@@ -9,6 +9,11 @@
     cursor: pointer;
 }
 
+.img-avatar {
+    width: 20px;
+    color: white;
+    
+}
 
 .signin {
   

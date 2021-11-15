@@ -105,12 +105,7 @@ router.use("/is-loggedin", (req, res, next) => {
     // method provided by passport
     const { _id, username, email, avatar } = req.user;
     return res.status(200).json({
-      currentUser: {
-        _id,
-        username,
-        email,
-        avatar,
-      },
+      currentUser: req.user
     });
   }
   res.status(403).json("Unauthorized");

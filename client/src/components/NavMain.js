@@ -9,6 +9,7 @@ import ProfileMenu from "./ProfileMenu";
 
 export default function NavMain() {
   const { isLoggedIn } = useAuth();
+  const { currentUser } = useAuth();
   return (
     <nav id="nav_main" className="nav">
       <NavLink exact className="link logo" activeClassName="is-active" to="/">
@@ -46,7 +47,7 @@ export default function NavMain() {
       {isLoggedIn === true && (
         <>
         <div>
-        <ProfileMenu/>
+        <ProfileMenu username={currentUser.username} avatar={currentUser.avatar}/>
         </div>
         </>
       )}
