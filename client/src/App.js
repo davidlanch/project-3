@@ -12,6 +12,7 @@ import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { UserContextProvider } from "./auth/UserContext";
 import Footer from "./components/Footer";
 import AllRecipes from "./views/AllRecipes";
+import CreateForm from "./components/CreateForm.jsx"
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/sign-in" component={Signin}></Route>
         <Route path="/signup" component={SignUp}></Route>
-        <Route path="/dashboard" component={OneRecipe} />        
+        <Route path="/dashboard" component={OneRecipe} />
+        <Route path="/create" component ={CreateForm} />        
         <Route path="/all-recipes/:id" component={OneRecipe} />
         <Route path="/all-recipes" component={AllRecipes} />
         <Route path="*" component={NotFound} />
