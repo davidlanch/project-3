@@ -22,7 +22,7 @@ const recipeSchema = new Schema({
   
   instructions: String,
 
-  difficulty: { type: String, enum: ["easy", "medium", "difficult"], default: "medium" },
+  difficulty: { type: [String] , enum: ["easy", "medium", "difficult"], default: "medium" },
 
   category: {
     type: String,

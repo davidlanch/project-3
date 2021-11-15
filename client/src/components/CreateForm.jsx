@@ -33,7 +33,7 @@ export default class CreateForm extends Component {
     uploadData.append("image", file);
 
     try {
-      await APIHandler.post("/", uploadData);
+      await APIHandler.post("/recipe/create", uploadData);
       console.log("this is this props", this.props);
     } catch (err) {
       console.error(err);

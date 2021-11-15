@@ -7,7 +7,7 @@ const recipeModel = require("./../model/recipes")
 const userModel = require("./../model/users")
 const uploader = require("./../config/cloudinary");
 
-router.post("/", uploader.single("image"), async (req, res, next) => {
+router.post("/recipe/create", uploader.single("image"), async (req, res, next) => {
   console.log(req.file);
   try {
     const newRecipe = await recipeModel.create({ ...req.body, image: req.file.path }); //  req.file.path  => provided by cloudinary's response
