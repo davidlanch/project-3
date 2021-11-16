@@ -10,6 +10,8 @@ const uploader = require("./../config/cloudinary");
 router.get("/all-recipes", (req, res) => {
   // console.log("this is the req query category", req.query.category)
   // console.log("these are the req query ingredients", req.query.ingredients)
+  console.log("im HEEEEEEEEEEEEEEEEEEEEEEEEEERE") 
+  return res.send("in all recipes")
   recipeModel
       .find()
       .populate("author")
@@ -31,6 +33,7 @@ router.post("/recipe/create", uploader.single("image"), async (req, res, next) =
 
 router.get("/all-recipes/:id([a-z0-9]{24})", (req, res) => {
   console.log("REQ BODY", req.params.id)
+  return res.send("in all recipes by id")
   recipeModel
     .findById(req.params.id)
     .then((recipe) => res.status(200).json(recipe))

@@ -32,7 +32,7 @@ router.get("/my-recipes/:recipeId/edit", (req, res) => {
 
   // const res = await APIHandler.get("/my-recipes/" + currentUser._id + "/" + this.props.id)
 
-  router.get("/:authorId", (req, res) => {
+  router.get("/:authorId([a-z0-9]{24})", (req, res) => {
     userModel
       .findById(req.params.authorId).populate("favorites")
       .then((user) =>  {
