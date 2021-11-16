@@ -7,7 +7,10 @@ const commentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Users",
   },
-
+  recipe: {
+    type: Schema.Types.ObjectId,
+    ref: "Recipes",
+  },
   date: Date,
 });
 

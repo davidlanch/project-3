@@ -3,13 +3,21 @@ import { Link } from "react-router-dom"
 import "./../styles/SimpleCard.css";
 import Favorite from './Favorite';
 import { useAuth } from "./../auth/UserContext";
+import { withAuth } from './../auth/UserContext';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faHeartbeat } from "@fortawesome/free-solid-svg-icons";
 
 
-export default class SimpleCard extends Component {
-    render() {
+class SimpleCard extends Component {
+    render() 
+    {
+        console.log(this.props.userContext.isLoggedIn)
         return (
             <div className="simple-card">
-            {/* <Favorite id={this.props.recipe._id}/> */}
+
+            {this.props.userContext.isLoggedIn === true && (<Favorite id={this.props.recipe._id}/>)}
+            {this.props.userContext.isLoggedIn === false && (<Link to="/sign-in"><FontAwesomeIcon icon={faHeartbeat} /></Link>)}
+
             <Link to={"/all-recipes/" + this.props.recipe._id} className="link">
             <div className="image-recipe">
             
@@ -24,3 +32,5 @@ export default class SimpleCard extends Component {
         )
     }
 }
+
+export default withAuth(SimpleCard)

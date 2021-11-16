@@ -60,7 +60,7 @@ class Signup extends Component {
     const { email, password, username, tmpAvatar } = this.state;
     return isLoggedIn ? (
       // avoid the component to be rendered if user is already logged in
-      <Redirect to="/dashboard" />
+      <Redirect to="/all-recipes" />
     ) : (
       <form
         className="form"

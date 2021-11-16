@@ -11,7 +11,7 @@ export default function IconAvatar({ clbk, avatar= ""}) {
 
   return (
     <div className={"input icon-avatar"} title="change avatar">
-      {/* {avatar && <img src={avatar} alt="user avatar" />}
+      {avatar && <img src={avatar} alt="user avatar" />}
       <input
         ref={fileInput}
         type="file"
@@ -22,7 +22,7 @@ export default function IconAvatar({ clbk, avatar= ""}) {
         onClick={handleClick}
         className="is-clickable fa-lg"
         icon={faCog}
-      /> */}
+      />
       <label htmlFor="">Upload your avatar</label>
       <input
         ref={fileInput}
