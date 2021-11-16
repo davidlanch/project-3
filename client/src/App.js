@@ -17,6 +17,7 @@ import MyProfile from "./views/MyProfile"
 import MyFavourites from "./views/MyFavourites"
 // import { useAuth } from "../src/auth/UserContext";
 import CreateForm from "./components/CreateForm.jsx"
+import UpdateForm from "./components/UpdateForm.jsx"
 
 function App() {
   // const { isLoggedIn } = useAuth();
@@ -31,7 +32,8 @@ function App() {
           <Route path="/sign-in" component={Signin}></Route>
           <Route path="/signup" component={SignUp}></Route>
           <Route exact path="/profile/my-recipes" component={MyRecipes} />
-          <Route path="/profile/my-recipes/create" component ={CreateForm} />   
+          <Route path="/profile/my-recipes/create" component ={CreateForm} /> 
+          <Route path="/profile/my-recipes/update" component ={UpdateForm} />   
           <Route path="/profile/my-profile" component={MyProfile} />
           <Route path="/profile/my-favourites" component={MyFavourites} />
           <Route path="/all-recipes/:id" component={OneRecipe} />

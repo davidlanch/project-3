@@ -67,7 +67,7 @@ export default class CreateForm extends Component {
           className="input"
         >
           <option value="easy">Easy</option>
-          <option selected value="medium">Medium</option>
+          <option  defaultValue="medium">Medium</option>
           <option value="difficult">difficult</option>
         </select>
         <input
