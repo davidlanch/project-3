@@ -7,15 +7,18 @@ const recipeModel = require("./../model/recipes")
 const userModel = require("./../model/users")
 const uploader = require("./../config/cloudinary");
 
-router.get("/all-recipes", (req, res) => {
-  // console.log("this is the req query category", req.query.category)
-  // console.log("these are the req query ingredients", req.query.ingredients)
-  recipeModel
-      .find()
-      .populate("author")
-      .then((recipes) => res.status(200).json(recipes))
-      .catch((err) => console.log("what is wrooooong???", err))
-})
+const allCategories = [
+  "Meat",
+  "Dessert",
+  "Miscellaneous",
+  "Pasta",
+  "Seafood",
+  "Side",
+  "Starter",
+  "Vegan",
+  "Vegetarian",
+  "Breakfast",
+]
 
 router.post("/recipe/create", uploader.single("image"), async (req, res, next) => {
   console.log(req.file);
@@ -27,8 +30,6 @@ router.post("/recipe/create", uploader.single("image"), async (req, res, next) =
   }
 });
 
-
-
 router.get("/all-recipes/:id([a-z0-9]{24})", (req, res) => {
   console.log("REQ BODY", req.params.id)
   recipeModel
@@ -39,30 +40,54 @@ router.get("/all-recipes/:id([a-z0-9]{24})", (req, res) => {
     });
 })
 
-// router.get("/all-recipes?:query", (req, res) => {
-//     // console.log("this is the req query category", req.query.category)
-//     console.log("this is the req query ", req.query)
-//     // console.log("these are the req query ingredients", req.query.ingredients)
-//     if (Object.keys(req.query).length === 0) {
-//       console.log("yep query is empty")
-//       recipeModel
-//         .find()
-//         .populate("author")
-//         .then((recipes) => res.status(200).json(recipes))
-//         .catch((err) => console.error(err))
-//       } else {
-//     recipeModel
-//       .find({
-//         title: {$regex: new RegExp(req.query.name), $options: i}
-//       })
-//       .populate("author")
-//       .then((recipes) => {
-//         res.status(200).json(recipes)
-//         console.log("i did a search i am a good route :') here is what I found: ", recipes)
-//       })
-//       .catch((err) => console.error(err))
-//     }
-//     })
+router.get("/all-recipes", (req, res) => {
+    console.log("this is the req query ", req.query)
+
+    // ----------- if the query is empty, get all recipes ------------
+    // i will probably remove this soon
+    if (Object.keys(req.query).length === 0) {
+      console.log("yep query is empty")
+      recipeModel
+        .find()
+        .populate("author")
+        .then((recipes) => {
+          res.status(200).json(recipes);
+        })
+        .catch((err) => console.error(err))
+
+    } else {
+
+    // ----------else, get only the wanted recipes -------------------
+    
+    // first build the criteria
+    
+    const nameRegexp = new RegExp(req.query.name, 'ig');
+    const category = req.query.category || allCategories;
+    const ingredientsRegexp = req.query.ingredients.map((ingredient) => new RegExp(ingredient, 'ig'))
+
+    // the actual search in the db
+    recipeModel
+      .find(
+        {$and: [
+        {
+          title: nameRegexp
+        }, 
+        {
+          category: {$in: category}
+        },
+        {
+          ingredients: {$all: ingredientsRegexp}
+        }
+      ]}
+      )
+      .populate("author")
+      .then((recipes) => {
+        res.status(200).json(recipes)
+        console.log("i did a search i am a good route :') here is what I found: ", recipes)
+      })
+      .catch((err) => console.error(err))
+    }
+    })
 
   
 

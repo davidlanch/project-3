@@ -29,7 +29,6 @@ export default function FilterMenu(props) {
         <form>
           <input
             className="search-bar"
-            name="name"
             type="text"
             placeholder="Search by name"
             onChange={props.onNameInput}
@@ -48,7 +47,6 @@ export default function FilterMenu(props) {
                 return (
                   <span key={category} className="one-category">
                     <input
-                      name="category"
                       type="checkbox"
                       onChange={(e) => props.onCategoryInput(e, category)}
                     />
@@ -60,7 +58,7 @@ export default function FilterMenu(props) {
           </div>
           <div className="ingredients-menu">
             <h3>Manage your ingredients</h3>
-            <SearchIngredients />
+            <SearchIngredients onIngredientInput={props.onIngredientInput}/>
           </div>
         </div>
       )}

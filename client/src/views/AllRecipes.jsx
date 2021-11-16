@@ -16,7 +16,7 @@ export default class AllRecipes extends Component {
   }
 
   componentDidMount() {
-    this.fetchData({});
+    this.fetchData({name: null, category: [], ingredients: []});
   }
 
   // Three functions handling the changes in the 3 parts of the filter
@@ -25,7 +25,6 @@ export default class AllRecipes extends Component {
     this.setState({ nameFilter: evt.target.value }, () => {
       this.fetchData();
     });
-    console.log("here we have the NEW NAME ", this.state.nameFilter)
   };
 
   onCategoryInput = (evt, newCategory) => {
@@ -40,8 +39,11 @@ export default class AllRecipes extends Component {
     })
   }
 
-  onIngredientInput = () => {
-
+  onIngredientInput = (ingredients) => {
+    this.setState({ ingredientFilter: [...ingredients] }, () => {
+      console.log("my ingredients", this.state.ingredientFilter)
+      this.fetchData();
+    });
   }
 
 //   componentDidUpdate = () => {
@@ -64,6 +66,7 @@ export default class AllRecipes extends Component {
         })
         .then((response) => {
             this.setState({ recipes: response.data });
+            console.log("i have fetched(?) this data: ", response.data)
         })
         .catch((err) => console.error(err))
   };

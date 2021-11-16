@@ -58,7 +58,8 @@ const fetchRecipes = () => {
             image: recipe.strMealThumb,
             ingredients: allIngredients,
             quantities: allQuantities,
-            author: APIuser._id
+            author: APIuser._id,
+            category: formattedCategory
           };
 
           // Adding the formatted Recipe to the array of recipes
