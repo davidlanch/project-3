@@ -1,0 +1,82 @@
+.comments .form {
+    margin-bottom: 14px;
+    width: 100%;
+  }
+  
+  .comments .form .input {
+    margin-right: 7px !important;
+  }
+  
+  .comments .form .btn {
+    min-width: 80px !important;
+  }
+  
+  .comments .title {
+    color: black;
+  }
+  
+  .comments {
+    align-items: flex-start;
+    border: 1px solid #283949c7;
+    display: flex;
+    color: whitesmoke;
+    flex-direction: column;
+    grid-row: 2 / 4;
+    grid-column: 6 / 9;
+    justify-content: flex-start;
+    max-height: 70vh;
+    overflow: scroll;
+    padding: 0 14px 14px;
+    position: relative;
+  }
+  
+  .comments .header {
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 5;
+    background: whitesmoke;
+  }
+  
+  .comments .comment {
+    background: whitesmoke;
+    border-bottom: 1px solid;
+    color: #283949c7;
+    margin-bottom: 14px;
+    min-height: 60px;
+    padding: 30px 7px 14px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .comments .comment .author-infos {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .comments .comment .message{
+    position: relative;
+    top: 7px;
+  }
+  
+  .comments .comment .avatar {
+    height: 32px;
+    width: 32px;
+    border-width: 1px;
+    margin-right: 5px;
+  }
+  
+  .comments .comment .date {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #b4b2b2;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  

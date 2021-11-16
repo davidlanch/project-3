@@ -18,6 +18,7 @@ import MyFavourites from "./views/MyFavourites"
 // import { useAuth } from "../src/auth/UserContext";
 import CreateForm from "./components/CreateForm.jsx"
 import UpdateForm from "./components/UpdateForm.jsx"
+import { ProtectedRoute} from "./auth/ProtectedRoute"
 
 function App() {
   // const { isLoggedIn } = useAuth();
@@ -31,11 +32,11 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/sign-in" component={Signin}></Route>
           <Route path="/signup" component={SignUp}></Route>
-          <Route exact path="/profile/my-recipes" component={MyRecipes} />
-          <Route path="/profile/my-recipes/create" component ={CreateForm} /> 
-          <Route path="/profile/my-recipes/update" component ={UpdateForm} />   
-          <Route path="/profile/my-profile" component={MyProfile} />
-          <Route path="/profile/my-favourites" component={MyFavourites} />
+          <ProtectedRoute exact path="/profile/my-recipes" component={MyRecipes} />
+          <ProtectedRoute path="/profile/my-recipes/create" component ={CreateForm} /> 
+          <ProtectedRoute path="/profile/my-recipes/update" component ={UpdateForm} />   
+          <ProtectedRoute path="/profile/my-profile" component={MyProfile} />
+          <ProtectedRoute path="/profile/my-favourites" component={MyFavourites} />
           <Route path="/all-recipes/:id" component={OneRecipe} />
           <Route exact path="/all-recipes" component={AllRecipes} />
           <Route path="*" component={NotFound} />

@@ -22,7 +22,7 @@ export default function Signin(props) {
   };
 
   return isLoggedIn ? (
-    <Redirect to="/dashboard" />
+    <Redirect to="/all-recipes" />
   ) : (
     <form className="form" onSubmit={handleSubmit}>
       <h1 className="title">Sign in</h1>

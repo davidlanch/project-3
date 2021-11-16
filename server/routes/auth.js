@@ -45,9 +45,8 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
     email,
     password: hashPass,
   };
-
   // check if an avatar FILE has been posted
-  if (req.file) newUser.avatar = req.file.secure_url;
+  if (req.file) newUser.avatar = req.file.path;
 
   userModel
     .create(newUser)
@@ -62,6 +61,7 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
 
 router.post("/signin", (req, res, next) => {
   passport.authenticate("local", (err, user, failureDetails) => {
+    console.log(err, user, failureDetails)
     if (err || !user) return res.status(403).json({ failureDetails }); // 403 : Forbidden
 
     /**

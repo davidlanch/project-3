@@ -11,6 +11,7 @@ Only the last parameter can be a "rest parameter".
 // line below : use of the rest parameter
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { isLoggedIn, isLoading } = useAuth();
+  console.log("HERE", isLoggedIn)
   // return default template while performing async auth task
   // isLoading is true while we come 
   if (isLoading) return <div>Loading...</div>;

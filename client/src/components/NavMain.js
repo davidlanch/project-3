@@ -46,9 +46,7 @@ export default function NavMain() {
 
       {isLoggedIn === true && (
         <>
-        <div>
         <ProfileMenu username={currentUser.username} avatar={currentUser.avatar}/>
-        </div>
         </>
       )}
     </nav>
