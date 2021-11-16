@@ -1,6 +1,6 @@
 .connected-menu {
-    position: relative;
-    left: 180vh;
+    position: absolute;
+    right: 50px;
     /* right: 0px; */
     display: flex;
     align-items: center;
@@ -12,12 +12,12 @@
 .img-avatar {
     width: 20px;
     color: white;
+    border-radius: 4px;
     
 }
 
-.signin {
-  
-}
+
+
 
 .connected-menu button {
         /* display: flex;

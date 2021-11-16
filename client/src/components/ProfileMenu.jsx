@@ -29,7 +29,6 @@ export default class ProfileMenu extends Component {
           <div className="hidden-menu">
             <Link className="link" to="/profile/my-recipes">My recipes</Link>
             <Link className="link" to="/profile/my-favourites">My favourites</Link>
-            <Link  className="link" to="/profile/my-profile">My profile</Link>
             <IconSignOut className="link signin" />
           </div>
         )}

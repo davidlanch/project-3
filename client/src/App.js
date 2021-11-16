@@ -13,7 +13,7 @@ import { UserContextProvider } from "./auth/UserContext";
 import Footer from "./components/Footer";
 import AllRecipes from "./views/AllRecipes";
 import MyRecipes from "./views/MyRecipes";
-import MyProfile from "./views/MyProfile"
+
 import MyFavourites from "./views/MyFavourites"
 // import { useAuth } from "../src/auth/UserContext";
 import CreateForm from "./components/CreateForm.jsx"
@@ -35,7 +35,6 @@ function App() {
           <ProtectedRoute exact path="/profile/my-recipes" component={MyRecipes} />
           <ProtectedRoute path="/profile/my-recipes/create" component ={CreateForm} /> 
           <ProtectedRoute path="/profile/my-recipes/update" component ={UpdateForm} />   
-          <ProtectedRoute path="/profile/my-profile" component={MyProfile} />
           <ProtectedRoute path="/profile/my-favourites" component={MyFavourites} />
           <Route path="/all-recipes/:id" component={OneRecipe} />
           <Route exact path="/all-recipes" component={AllRecipes} />
