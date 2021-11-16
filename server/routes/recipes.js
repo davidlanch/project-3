@@ -117,15 +117,7 @@ router.get("/all-recipes", (req, res) => {
       }
   })
 
-router.get("https://themealdb.com/images/ingredients/:title.png", async (req, res, next) => {
-  try {
-      const updatedRecipe = await userModel.findByIdAndUpdate(req.params.userId, {$pull:{favorites: req.params.recipeId}});
-      res.status(200).json(updatedRecipe);
-      console.log("updated recipe", updatedRecipe);
-    } catch (err) {
-      next(err);
-    }
-})
+
 
 
 
