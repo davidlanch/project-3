@@ -1,0 +1,19 @@
+.main-home {
+    display: flex;  
+    justify-content: space-between; 
+    margin: 50px;
+}
+
+.left-home {
+    margin: auto;
+}
+
+.left-home button {
+    background-color: var(--orange-color);
+}
+
+.logo-home {
+    width: 200px;
+}
+
+

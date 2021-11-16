@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router';
 
 function SearchIngredients(props) {
-
-    const [ingredients, setIngredients] = useState([""]);
+    console.log("the ingredients i am trying to use in search ingredients: ", props?.ingredientsFromHome||[""])
+    const [ingredients, setIngredients] = useState(props?.ingredientsFromHome||[""]);
 
     // console.log("the ingredients are: ", ingredients)
 
     useEffect(() => {
-        props.onIngredientInput(ingredients)
+        if (typeof props.onIngredientInput === "function") {
+        props.onIngredientInput(ingredients)}
     }, [ingredients])
 
     const addIngredientBar = (e) => {
