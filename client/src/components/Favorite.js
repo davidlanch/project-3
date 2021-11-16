@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import APIHandler from "../api/handler";
 import "./../styles/Favorite.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faHeartbeat } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import faHeartB from "@fortawesome/free-regular-svg-icons/faHeart";
 import { useAuth } from "../auth/UserContext";
 
 
@@ -40,7 +41,7 @@ export default function Favorite(props) {
 
   return (
     <div>
-      {isFavorite ? <button onClick= {handleClick}><FontAwesomeIcon icon={faHeart} /></button> : <button onClick= {handleClick}><FontAwesomeIcon icon={faHeartbeat} /></button>}
+      {isFavorite ? <button onClick={handleClick}><FontAwesomeIcon icon={faHeart} /></button> : <button onClick= {handleClick}><i class="far fa-heart"></i></button>}
     </div>
 
   );

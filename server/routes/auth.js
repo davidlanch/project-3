@@ -45,9 +45,8 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
     email,
     password: hashPass,
   };
-
   // check if an avatar FILE has been posted
-  if (req.file) newUser.avatar = req.file.secure_url;
+  if (req.file) newUser.avatar = req.file.path;
 
   userModel
     .create(newUser)

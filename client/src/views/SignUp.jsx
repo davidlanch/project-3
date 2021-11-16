@@ -10,13 +10,14 @@ import "./../../src/styles/icon-avatar.css";
 
 class Signup extends Component {
   state = {
-    avatar: "",
+    avatar: '',
     tmpAvatar: "",
     username: "admin",
     email: "admin@foobarbaz.io",
     password: "12345",
   };
-
+  fileInput = React.createRef()
+  
   handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,7 +26,9 @@ class Signup extends Component {
     fd.append("email", this.state.email);
     fd.append("password", this.state.password);
     fd.append("username", this.state.username);
-    fd.append("avatar", this.state.avatar);
+    if (this.fileInput.current.files[0]) {
+      fd.append('avatar', this.fileInput.current.files[0])
+    }
 
     try {
       await APIHandler.post("/signup", fd);
@@ -41,20 +44,21 @@ class Signup extends Component {
 
   handleImage = (e) => {
     // console.log("Signup@handle image", e.target.files[0]);
-    this.setState({ avatar: e.target.files[0] }, () => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        // when the fileREader ends  ...
-        const baseString = reader.result; // get the image as a base64 encoded string
-        this.setState({ tmpAvatar: baseString }); // set the tmp avatar as an image source before upload
-      };
-      reader.readAsDataURL(this.state.avatar); // read the file from the local disk
-    });
+    this.setState({ avatar: e.target.files[0] }
+    //   , () => {
+    //   const reader = new FileReader();
+    //   reader.onloadend = () => {
+    //     // when the fileREader ends  ...
+    //     const baseString = reader.result; // get the image as a base64 encoded string
+    //     this.setState({ tmpAvatar: baseString }); // set the tmp avatar as an image source before upload
+    //   };
+    //   reader.readAsDataURL(this.state.avatar); // read the file from the local disk
+    // }
+    );
   };
 
   render() 
   {
-    const fileInput = React.createRef()
     console.log(this.props);
     const { isLoggedIn } = this.props.userContext;
     const { email, password, username, tmpAvatar } = this.state;
@@ -108,8 +112,10 @@ class Signup extends Component {
         <div className="container"> 
         <label htmlFor="">Upload your avatar</label>
         <input
-          ref={fileInput}
+          ref={this.fileInput}
           type="file"
+          name="avatar"
+          id='avatar'
           onChange={this.handleImage} 
         />
         </div>
