@@ -1,17 +1,21 @@
-import { faHardHat } from "@fortawesome/free-solid-svg-icons";
 import React, { Component } from "react";
 import APIHandler from "../api/handler.js";
+import { withAuth } from "../auth/UserContext.js";
 
-export default class CreateForm extends Component {
+class CreateForm extends Component {
   // using the constructor form to associate a ref
   constructor(props) {
     console.log(props);
     super(props); // MANDATORY !!!!
     this.state = {
       title: "",
-      difficulty: "",
+      author: "",
+      difficulty: "easy",
+      ingredient: "",
       ingredients: [],
       quantities: [],
+      quantity: "",
+      category:"",
       image: React.createRef(), // create a reference to attach to the virtual DOM
     };
   }
@@ -22,7 +26,8 @@ export default class CreateForm extends Component {
     const { title, difficulty, ingredients, quantities } = this.state;
     // accessing the image out of the ref
     const file = this.state.image.current.files[0]; // target the image file associated to the input[type=file]
-
+    const user = this.props.userContext.currentUser._id;
+    console.log("this is user", user);
     const uploadData = new FormData(); // create a form data => an object to send as post body
 
     // appending the keys / values pairs to the FormData
@@ -31,10 +36,11 @@ export default class CreateForm extends Component {
     uploadData.append("ingredients", ingredients); // create a key [color] on the formDate
     uploadData.append("quantities", quantities);
     uploadData.append("image", file);
-
+    uploadData.append("author", user);
     try {
       await APIHandler.post("/recipe/create", uploadData);
-      console.log("this is this props", this.props);
+      this.props.history.push("./")
+      console.log("this is this props", this.props.history);
     } catch (err) {
       console.error(err);
     }
@@ -46,48 +52,124 @@ export default class CreateForm extends Component {
     });
   };
 
-  
+  addIngredientBar = (e) => {
+    console.log("you are", e);
+    e.preventDefault();
+    let newIngredients = [...this.state.ingredients];
+    let newQuantities = [...this.state.quantities];
+    newIngredients.push(this.state.ingredient);
+    newQuantities.push(this.state.quantity);
 
+    this.setState({
+      ingredients: newIngredients,
+      ingredient: "",
+      quantities: newQuantities,
+      quantity: "",
+    });
+  };
+
+  removeIngredientBar = (e, index) => {
+    e.preventDefault()
+    const deleteIngredient = [...this.state.ingredients]
+    deleteIngredient.splice(index, 1)
+    this.setState({
+        ingredients: deleteIngredient,
+        quantities: deleteIngredient,
+        
+      });
+
+  }
   render() {
-    console.log("this is state", this.state.difficulty);
+    console.log("this is the ingrdients", this.state);
     return (
-      <form>
-        <h1>create your own recipe!</h1>
-        <input
-          name="title"
-          type="text"
-          placeholder="title"
-          value={this.state.title}
-          onChange={this.handleChange}
-        />
-        <select
-          name="difficulty"
-          value={this.state.difficulty}
-          onChange={this.handleChange}
-          className="input"
-        >
-          <option value="easy">Easy</option>
-          <option  defaultValue="medium">Medium</option>
-          <option value="difficult">difficult</option>
-        </select>
-        <input
-          name="ingredients"
-          type="text"
-          placeholder="ingredients"
-          value={this.state.ingredients}
-          onChange={this.handleChange}
-        />
-        <input
-          name="quantities"
-          type="text"
-          placeholder="quantities"
-          value={this.state.quantities}
-          onChange={this.handleChange}
-        />
-        {/* THE REF IS HERE */}
-        <input ref={this.state.image} name="image" type="file" />
-        <button onClick={this.handleSubmit}>ok</button>
-      </form>
+      <>
+        <form>
+          <h1>create your own recipe!</h1>
+          <input
+            name="title"
+            type="text"
+            placeholder="title"
+            value={this.state.title}
+            onChange={this.handleChange}
+          />
+          <select
+            name="difficulty"
+            value={this.state.difficulty}
+            onChange={this.handleChange}
+            className="input"
+          >
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="difficult">difficult</option>
+          </select>
+
+          <select
+            name="category"
+            value={this.state.category}
+            onChange={this.handleChange}
+            className="input"
+           >
+            <option value="Meat">Meat</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Miscellaneous">Miscellaneous</option>
+            <option value="Pasta">Pasta</option>
+            <option value="Seafood">Seafood</option>
+            <option value="Side">Side</option>
+            <option value="Starter">Starter</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Breakfast">Breakfast</option>
+          </select>
+
+          <input
+            name="ingredient"
+            type="text"
+            placeholder="ingredients"
+            value={this.state.ingredient}
+            onChange={this.handleChange}
+          />
+          <input
+            name="quantity"
+            type="text"
+            placeholder="quantities"
+            value={this.state.quantity}
+            onChange={this.handleChange}
+          />
+          <button onClick={this.addIngredientBar}>+</button>
+
+          {/* THE REF IS HERE */}
+          <input ref={this.state.image} name="image" type="file" />
+          <button onClick={this.handleSubmit}>ok</button>
+        </form>
+
+        <div>
+          <h1>information</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Ingredients</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+              </tr>
+              {this.state.ingredients.map((element, i) => {
+                return (
+                  <tr>
+                    <td key={i}>{element}</td>
+                    <td>{this.state.quantities[i]}</td>
+                    <button onClick={(evt) => this.removeIngredientBar(evt, this.index)}><i className="fas fa-trash-alt"></i></button>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </>
     );
   }
 }
+
+export default withAuth(CreateForm);

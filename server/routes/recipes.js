@@ -21,9 +21,13 @@ const allCategories = [
 ]
 
 router.post("/recipe/create", uploader.single("image"), async (req, res, next) => {
-  console.log(req.file);
+  console.log(req.body);
+  req.body.quantities = req.body.quantities.split(",");
+  req.body.ingredients = req.body.ingredients.split(",")
+  
+
   try {
-    const newRecipe = await recipeModel.create({ ...req.body, image: req.file.path }); //  req.file.path  => provided by cloudinary's response
+    const newRecipe = await recipeModel.create({ ...req.body, image: req.file.path,  }); //  req.file.path  => provided by cloudinary's response
     res.status(201).json(newRecipe);
   } catch (err) {
     next(err);

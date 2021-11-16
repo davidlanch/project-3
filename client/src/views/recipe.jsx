@@ -4,6 +4,7 @@ import "./../styles/ingredients.css";
 import APIHandler from "../api/handler";
 import SearchIngredients from "../components/SearchIngredients";
 import AllRecipes from "./AllRecipes";
+import { Link } from "react-router-dom";
 import { useAuth } from "../auth/UserContext";
 import Comment from "../components/Comment";
 
@@ -29,6 +30,9 @@ function Recipe(props) {
 
   return (
     <>
+    <div>
+           <Link to="./">back to all recipes</Link>
+       </div>
       <div className="shadow-drop-2-center wrapper">
         <div>
           <img src={recipe.image} alt={recipe.title} />
