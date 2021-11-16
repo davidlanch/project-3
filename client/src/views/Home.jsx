@@ -18,7 +18,7 @@ export default function Home(props) {
         <div className="main-home">
             <div className="left-home">
                 <img className="logo-home" src="title-bon-app.png" alt="BonApp" />
-                <p>Add your ingredients!</p>
+                <p>Add your ingredients</p>
                 <SearchIngredients onIngredientInput={onHomeIngredientInput}/>
                 <button className="find-recipe-btn" onClick={findYourRecipe}>Find your recipe</button>
             </div>

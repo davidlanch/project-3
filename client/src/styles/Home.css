@@ -6,10 +6,17 @@
 
 .left-home {
     margin: auto;
+    font-size: 2em;
 }
 
+
 .find-recipe-btn {
-    background-color: var(--orange-color);
+    background-color: var(--white-color);
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 0.8em;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.15);
 }
 
 .logo-home {
