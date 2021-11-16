@@ -15,12 +15,14 @@ export default function Favorite(props) {
   useEffect(() => {
     const tmp = currentUser?.favorites.includes(props.id);
     setFavorite(tmp)
+    console.log("PROPS", props.id, "is favorite", isFavorite, "list Favorites", currentUser.favorites)
 
   }, [currentUser]);
 
   const handleClick = () => {
     if (isFavorite === true) {
       removeFromFavorite();
+      setFavorite(!isFavorite);
     } else {
       addtoFavorite();
       setFavorite(!isFavorite)    }
@@ -29,19 +31,23 @@ export default function Favorite(props) {
 
   const addtoFavorite = () => {
     APIHandler.get("/all-recipes/add-to-favorite/" + currentUser._id + "/" + props.id)
-    .then((ok) => setFavorite(!isFavorite))
+    .then((ok) => {
+      setFavorite(!isFavorite)
+    })
     .catch ((error) => console.error(error))
   }
 
   const removeFromFavorite = () => {
     APIHandler.get("/all-recipes/remove-from-favorite/" + currentUser._id + "/" + props.id)
-    .then((ok) => setFavorite(!isFavorite))
+    .then((ok) => {
+      if (props.handler) props.handler();
+    })
     .catch ((error) => console.error(error))
   }
 
   return (
     <div>
-      {isFavorite ? <button onClick={handleClick}><FontAwesomeIcon icon={faHeart} /></button> : <button onClick= {handleClick}><i class="far fa-heart"></i></button>}
+      {isFavorite ? <button onClick={handleClick}><FontAwesomeIcon icon={faHeart} /></button> : <button onClick= {handleClick}><i className="far fa-heart"></i></button>}
     </div>
 
   );

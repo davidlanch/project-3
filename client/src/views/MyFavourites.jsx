@@ -32,7 +32,7 @@ export default function MyFavourites() {
         {FavouritesList.map((element) => {
             return (
             <div key={element._id} className="all-recipes">
-              <SimpleCard recipe={element} ></SimpleCard>
+              <SimpleCard recipe={element} handler={fetchFavorites} ></SimpleCard>
               </div>
             )
         })}
