@@ -4,14 +4,17 @@ import "./../styles/ingredients.css";
 import APIHandler from "../api/handler";
 import SearchIngredients from "../components/SearchIngredients";
 import AllRecipes from "./AllRecipes";
+import { useAuth } from "../auth/UserContext";
+import Comment from "../components/Comment";
 
 function Recipe(props) {
   const [recipe, setRecipe] = useState([]);
+  const { currentUser } = useAuth();
   // Similar a componentDidMount y componentDidUpdate:
 
   useEffect(() => {
     fetchRecipes();
-  }, []);
+  }, [currentUser]);
 
   const fetchRecipes = async () => {
     try {
@@ -38,7 +41,7 @@ function Recipe(props) {
         <div className="wrapper-ingredients">
           {recipe.ingredients?.map((product, i) => {
             return (
-              <div className="wrapp-ingredient shadow-drop-2-center ">
+              <div key ={i} className="wrapp-ingredient shadow-drop-2-center ">
                 <h3>{product}</h3>
                 <p>{recipe.quantities[i]}</p>
               </div>
@@ -50,6 +53,7 @@ function Recipe(props) {
         </div>
         <div>
           <h2>Comments</h2>
+          <Comment userId={currentUser?._id} recipeId={props.match.params.id}/>
         </div>
       </div>
     </>

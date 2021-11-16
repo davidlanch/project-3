@@ -22,14 +22,10 @@ export default class ProfileMenu extends Component {
     return (
       <div className="connected-menu">
         <div className="signin" onClick={() => this.toggleProfileMenu()}>
-          {/* <FontAwesomeIcon icon={faCarrot} className="fa" /> */}
           <img src={this.props.avatar} alt="avatar" className='img-avatar' />
-          {/* <p>My profile</p> */}
           <p>{this.props.username}</p>
           <FontAwesomeIcon icon={faSortDown} className="fa" />
-        </div>
-        {/* <ProfileButton onClick={() => this.toggleAddForm()}/> */}
-        {!this.state.showProfileMenu && (
+          {!this.state.showProfileMenu && (
           <div className="hidden-menu">
             <Link className="link" to="/profile/my-recipes">My recipes</Link>
             <Link className="link" to="/profile/my-favourites">My favourites</Link>
@@ -37,6 +33,8 @@ export default class ProfileMenu extends Component {
             <IconSignOut className="link signin" />
           </div>
         )}
+        </div>
+
       </div>
     );
   }
