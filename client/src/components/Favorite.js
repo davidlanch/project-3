@@ -22,10 +22,10 @@ export default function Favorite(props) {
   const handleClick = () => {
     if (isFavorite === true) {
       removeFromFavorite();
-      setFavorite(!isFavorite);
+      setFavorite(!isFavorite, () => this.handler.props())  
     } else {
       addtoFavorite();
-      setFavorite(!isFavorite)    }
+      setFavorite(!isFavorite, () => this.handler.props())    }
 
   }
 

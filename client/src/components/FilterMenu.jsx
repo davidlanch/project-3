@@ -58,7 +58,7 @@ export default function FilterMenu(props) {
           </div>
           <div className="ingredients-menu">
             <h3>Manage your ingredients</h3>
-            <SearchIngredients onIngredientInput={props.onIngredientInput}/>
+            <SearchIngredients ingredientsFromHome={props.ingredientsFromHome}/>
           </div>
         </div>
       )}

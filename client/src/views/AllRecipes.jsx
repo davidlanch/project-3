@@ -16,7 +16,14 @@ export default class AllRecipes extends Component {
   }
 
   componentDidMount() {
-    this.fetchData({name: null, category: [], ingredients: []});
+    // if we came from Home, we have to use the location parameters
+    const url = new URLSearchParams(this.props.location.search)
+    const ingredientParams = url.get('ingredients').split(',') || [];
+    console.log("yes here are the ingredient params: ", ingredientParams)
+    
+    // const ingredientParams = this.props.location
+    this.setState({ingredientFilter: ingredientParams}, () => this.fetchData())
+    
   }
 
   // Three functions handling the changes in the 3 parts of the filter
@@ -46,16 +53,10 @@ export default class AllRecipes extends Component {
     });
   }
 
-//   componentDidUpdate = () => {
-//     this.fetchData({
-//         name: this.state.nameFilter,
-//         category: this.state.categoryFilter
-//     });
-//   };
-
-
   // The function calls the API to get the data corresponding to the 3 filters
   fetchData = () => {
+    console.log("i did your fucking search ok this is not on me i'm a good function")
+    console.log("i used this data that you gave me", this.state.ingredientFilter)
     APIHandler
         .get("/all-recipes", {
             params: {
@@ -81,6 +82,7 @@ export default class AllRecipes extends Component {
           onNameInput={this.onNameInput}
           onCategoryInput={this.onCategoryInput}
           onIngredientInput={this.onIngredientInput}
+          ingredientsFromHome={this.state.ingredientFilter}
         />
         <div className="list-recipes">
           {this.state.recipes.map((element) => {

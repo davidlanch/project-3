@@ -1,9 +1,11 @@
 .footer {
-    
-    display: flex;
+    width: 100vh;;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
-    height: 8vh;
+    justify-content: center; */
+    height: 4vh;
+    background-color: var(--orange-color);
+    color: var(--white-color);
     animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
