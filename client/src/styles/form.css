@@ -136,3 +136,18 @@
     flex-direction: column;
     gap:10px;
   }
+
+  .error {
+
+    /* background-color: var(--orange-color); */
+    color: var(--orange-color);
+    padding: 5px 0 5px 20px;
+    margin-bottom: 15px;
+    width: 100%;
+    outline: none;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    
+  }
+

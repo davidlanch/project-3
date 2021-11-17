@@ -15,6 +15,7 @@ class Signup extends Component {
     username: "admin",
     email: "admin@foobarbaz.io",
     password: "12345",
+    isError: false
   };
   fileInput = React.createRef()
   
@@ -35,6 +36,9 @@ class Signup extends Component {
       this.props.history.push("/sign-in");
     } catch (err) {
       console.error(err);
+      this.setState({
+        isError: true
+      })
     }
   };
 
@@ -77,6 +81,7 @@ class Signup extends Component {
         {/* <label className="label" htmlFor="email">
           email
         </label> */}
+        {this.state.isError === true && <div className="error">email already registered, please sign in</div>}
         <input
           className="input"
           placeholder="email"
@@ -111,13 +116,14 @@ class Signup extends Component {
           name="password"
           defaultValue={password}
         />
-        <div className="container"> 
+        <div className="container "> 
         <label htmlFor="">Upload your avatar</label>
         <input
           ref={this.fileInput}
           type="file"
           name="avatar"
           id='avatar'
+          className="avatar"
           onChange={this.handleImage} 
         />
         </div>

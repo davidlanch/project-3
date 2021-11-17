@@ -82,6 +82,7 @@ export default class AllRecipes extends Component {
           onIngredientInput={this.onIngredientInput}
           ingredientsFromHome={this.state.ingredientFilter}
         />
+       
         <div className="list-recipes">
           {this.state.recipes.map((element) => {
             return (
@@ -90,7 +91,8 @@ export default class AllRecipes extends Component {
               </div>
             );
           })}
-        </div>
+          </div>
+       
         <button onClick={this.backToSearch}>Back to my search</button>
       </>
     );
