@@ -22,14 +22,30 @@ class Updateform extends Component {
     };
   }
 
+  componentDidMount = async () =>{
+      try{
+        const recipeInfo =  await APIHandler.get("/all-recipes/" + this.props.match.params.id);
+        console.log(recipeInfo)
+        this.setState({
+            title: recipeInfo.data.title,
+            difficulty: recipeInfo.data.difficulty,
+            ingredient: recipeInfo.data.ingredient,
+            ingredients: recipeInfo.data.ingredients,
+            quantities: recipeInfo.data.quantities,
+            quantity: recipeInfo.data.quantity,
+            category: recipeInfo.data.category,
+            instructions: recipeInfo.data.instructions
+           
+        })
+        } catch (error) {console.error(error)}     
+  }
+
   handleSubmit = async (e) => {
     e.preventDefault(); // prevent the form to reload
     // destructuring the state
     const { title, difficulty, ingredients, quantities } = this.state;
     // accessing the image out of the ref
     const file = this.state.image.current.files[0]; // target the image file associated to the input[type=file]
-    const user = this.props.userContext.currentUser._id;
-    console.log("this is user", user);
     const uploadData = new FormData(); // create a form data => an object to send as post body
 
     // appending the keys / values pairs to the FormData
@@ -38,19 +54,52 @@ class Updateform extends Component {
     uploadData.append("ingredients", ingredients); // create a key [color] on the formDate
     uploadData.append("quantities", quantities);
     uploadData.append("image", file);
-    uploadData.append("author", user);
+    
     try {
-      await APIHandler.patch("/recipe/upload/" + this.props.match.id, uploadData);
-      this.props.history.push("./")
+      await APIHandler.patch("/recipe/update/" + this.props.match.params.id, uploadData);
+    //   this.props.history.push("./")
       console.log("this is this props", this.props.history);
     } catch (err) {
       console.error(err);
     }
   };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
   
+    addIngredientBar = (e) => {
+    console.log("you are", e);
+    e.preventDefault();
+    let newIngredients = [...this.state.ingredients];
+    let newQuantities = [...this.state.quantities];
+    newIngredients.push(this.state.ingredient);
+    newQuantities.push(this.state.quantity);
+
+    this.setState({
+      ingredients: newIngredients,
+      ingredient: "",
+      quantities: newQuantities,
+      quantity: "",
+    });
+  };
+
+  removeIngredientBar = (e, index) => {
+    e.preventDefault()
+    const deleteIngredient = [...this.state.ingredients]
+    deleteIngredient.splice(index, 1)
+    this.setState({
+        ingredients: deleteIngredient,
+        quantities: deleteIngredient,
+        
+      });
+
+  }
   
   render() {
-    console.log("this is the ingrdients", this.state);
+    console.log("this is the ingrdients",this.props.match.params.id);
     return (
       <>
         <form>
