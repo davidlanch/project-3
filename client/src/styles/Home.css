@@ -5,6 +5,7 @@
 }
 
 .left-home {
+    max-width: 40%;
     margin: auto;
     font-size: 2em;
 }
@@ -21,6 +22,11 @@
 
 .logo-home {
     width: 200px;
+}
+
+.fridge {
+    max-width: 40%;
+    height: auto;
 }
 
 

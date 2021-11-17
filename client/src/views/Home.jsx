@@ -22,9 +22,7 @@ export default function Home(props) {
                 <SearchIngredients onIngredientInput={onHomeIngredientInput}/>
                 <button className="find-recipe-btn" onClick={findYourRecipe}>Find your recipe</button>
             </div>
-            <div className="fridge">
-                <img src="openingFridge.gif" alt="fridge opening" />
-            </div>
+            <img className="fridge" src="openingFridge.gif" alt="fridge opening" />
         </div>
     )
 }
