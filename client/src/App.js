@@ -34,7 +34,7 @@ function App() {
           <Route path="/signup" component={SignUp}></Route>
           <ProtectedRoute exact path="/profile/my-recipes" component={MyRecipes} />
           <ProtectedRoute path="/profile/my-recipes/create" component ={CreateForm} /> 
-          <ProtectedRoute path="/profile/my-recipes/:id" component ={UpdateForm} />   
+          <ProtectedRoute path="/profile/my-recipes/update/:id" component ={UpdateForm} />   
           <ProtectedRoute path="/profile/my-favourites" component={MyFavourites} />
           <Route path="/all-recipes/:id" component={OneRecipe} />
           <Route exact path="/all-recipes" component={AllRecipes} />

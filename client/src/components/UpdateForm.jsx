@@ -22,17 +22,32 @@ class Updateform extends Component {
     };
   }
 
-  componentDidMount = async () => {
+  handleSubmit = async (e) => {
+    e.preventDefault(); // prevent the form to reload
+    // destructuring the state
+    const { title, difficulty, ingredients, quantities } = this.state;
+    // accessing the image out of the ref
+    const file = this.state.image.current.files[0]; // target the image file associated to the input[type=file]
+    const user = this.props.userContext.currentUser._id;
+    console.log("this is user", user);
+    const uploadData = new FormData(); // create a form data => an object to send as post body
+
+    // appending the keys / values pairs to the FormData
+    uploadData.append("title", title); // create a key [name] on the formDate
+    uploadData.append("difficulty", difficulty); // create a key [age] on the formDate
+    uploadData.append("ingredients", ingredients); // create a key [color] on the formDate
+    uploadData.append("quantities", quantities);
+    uploadData.append("image", file);
+    uploadData.append("author", user);
     try {
-      const recipeInfo = await APIHandler.get("/all-recipes/" + this.props.match.params.id );
-     console.log("what is this",recipeInfo)
-      this.setState({
-          title: recipeInfo.data.title,
-         
-      })
-      } catch (error) {console.error(error)}
-}
- 
+      await APIHandler.patch("/recipe/upload/" + this.props.match.id, uploadData);
+      this.props.history.push("./")
+      console.log("this is this props", this.props.history);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
   
   render() {
     console.log("this is the ingrdients", this.state);
