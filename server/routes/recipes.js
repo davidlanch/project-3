@@ -21,7 +21,7 @@ const allCategories = [
 ]
 
 router.post("/recipe/create", uploader.single("image"), async (req, res, next) => {
-  console.log(req.body);
+ 
   req.body.quantities = req.body.quantities.split(",");
   req.body.ingredients = req.body.ingredients.split(",")
   
@@ -34,22 +34,24 @@ router.post("/recipe/create", uploader.single("image"), async (req, res, next) =
   }
 });
 
-router.patch("/recipe/update/:id", uploader.single("image"), async  (req, res) => {
-    console.log("you are here")
+router.patch("/recipe/update/:id([a-z0-9]{24})", uploader.single("image"), async (req, res, next) => {
+
+  req.body.quantities = req.body.quantities.split(",");
+  req.body.ingredients = req.body.ingredients.split(",")
+  
   try {
-    const updateRecipe = await recipeModel.findByIdAndUpdate(
-      req.params.id,
-      req.body,
+    const updatedRecipe = await recipeModel.findByIdAndUpdate(
+      req.params.id,  {...req.body, image: req.file.path},
       { new: true }
     );
-    res.status(200).json(updateRecipe);
+    res.status(200).json(updatedRecipe);
   } catch (err) {
     next(err);
   }
-})
+});
 
 router.get("/all-recipes/:id([a-z0-9]{24})", (req, res) => {
-  console.log("REQ BODY", req.params.id)
+  
   recipeModel
     .findById(req.params.id)
     .then((recipe) => res.status(200).json(recipe))
