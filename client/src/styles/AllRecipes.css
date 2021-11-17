@@ -8,3 +8,8 @@
     text-align: center;
 }
 
+.fa-times-circle {
+    color: var(--orange-color);
+    font-size: 20px;
+}
+
