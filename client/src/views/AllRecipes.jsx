@@ -22,7 +22,17 @@ export default class AllRecipes extends Component {
     if (typeof url.get('ingredients') === "string") ingredientParams = url.get('ingredients').split(',')
     console.log("yes here are the ingredient params: ", ingredientParams)
     
-    this.setState({ingredientFilter: ingredientParams}, () => this.fetchData())
+    // if we came from the details of one recipe, we want to display the same search as before
+    // with props.location.searchFromOneRecipe
+    let name = ""; 
+    let categories = [];
+    if (this.props.location.searchFromOneRecipe) {
+      ingredientParams = this.props.location.searchFromOneRecipe.ingredients;
+      name = this.props.location.searchFromOneRecipe.name;
+      categories = this.props.location.searchFromOneRecipe.categories;
+    }
+
+    this.setState({ingredientFilter: ingredientParams, nameFilter: name, categoryFilter: categories}, () => this.fetchData())
     
   }
 
@@ -69,9 +79,6 @@ export default class AllRecipes extends Component {
         .catch((err) => console.error(err))
   };
 
-  backToSearch = () => {
-  }
-
   render() {
     if (!this.state.recipes) return <div>Loading...</div>;
     return (
@@ -87,13 +94,16 @@ export default class AllRecipes extends Component {
           {this.state.recipes.map((element) => {
             return (
               <div key={element._id}>
-                <SimpleCard recipe={element}></SimpleCard>
+                <SimpleCard previousSearchParams={
+                    {name: this.state.nameFilter,
+                    ingredients: this.state.ingredientFilter,
+                    category: this.state.categoryFilter}
+                  } recipe={element}>
+                  </SimpleCard>
               </div>
             );
           })}
-          </div>
-       
-        <button onClick={this.backToSearch}>Back to my search</button>
+        </div>
       </>
     );
   }

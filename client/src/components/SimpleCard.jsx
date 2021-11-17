@@ -12,6 +12,7 @@ class SimpleCard extends Component {
     render() 
     {
         console.log(this.props.userContext.isLoggedIn)
+
         return (
             <div className="simple-card">
             <div className="favorite">
@@ -20,13 +21,21 @@ class SimpleCard extends Component {
 </div>
 
  
-            <Link to={"/all-recipes/" + this.props.recipe._id} className="link">
+           
+            {/* {this.props.userContext.isLoggedIn === true && (<Favorite handler={this.props.handler} id={this.props.recipe._id}/>)} */}
+            {this.props.userContext.isLoggedIn === false && (<Link to="/sign-in"><i className="far fa-heart"></i></Link>)}
+
+            <Link to={{pathname:"/all-recipes/" + this.props.recipe._id, previousSearchParams: this.props.previousSearchParams}} className="link">
+           
+            
             <img src={this.props.recipe.image}  alt="photo-recioe" />
+           
                 <h1 className="title-simple-card">{this.props.recipe.title}</h1>
-                </Link>
+               
                 <p className= "title-difficulty"><i>{this.props.recipe.category}</i></p>
-                
-            </div>
+                </Link>
+                </div>
+            
         )
     }
 }
