@@ -23,7 +23,7 @@ class SimpleCard extends Component {
             <div className="image-recipe">
             
 
-            <img src={this.props.recipe.image}  alt="photo-recioe" />
+            <img src={this.props.recipe.image}  alt="photo-recipe" />
             </div>
                 <h1 className="title-simple-card">{this.props.recipe.title}</h1>
                 </Link>
