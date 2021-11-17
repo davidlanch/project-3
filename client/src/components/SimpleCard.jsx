@@ -15,7 +15,7 @@ class SimpleCard extends Component {
         return (
             <div className="simple-card">
 
-            {this.props.userContext.isLoggedIn === true && (<Favorite handler={this.props.handler} id={this.props.recipe._id}/>)}
+            {/* {this.props.userContext.isLoggedIn === true && (<Favorite handler={this.props.handler} id={this.props.recipe._id}/>)} */}
             {this.props.userContext.isLoggedIn === false && (<Link to="/sign-in"><i className="far fa-heart"></i></Link>)}
 
             <Link to={"/all-recipes/" + this.props.recipe._id} className="link">
