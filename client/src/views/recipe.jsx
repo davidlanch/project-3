@@ -39,16 +39,6 @@ function Recipe(props) {
   };
   console.log("this is the", recipe);
 
-  // const fetchImages = async () => {
-  //   let arrayImages = []
-  //   if (recipe.ingredients?.length !== 0) {
-  //     for (let i=0; i<recipe.ingredients?.length; i++) {
-  //       let url = "https://themealdb.com/images/ingredients/" + "Red%20Wine.png"
-  //       arrayImages= [...arrayImages, url]
-  //     }
-  //   }
-  //   setImage(arrayImages);
-  // }
 
   return (
     <>

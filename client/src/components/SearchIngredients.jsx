@@ -38,12 +38,15 @@ function SearchIngredients(props) {
             <form>
                 {
                     ingredients.map((el, index) => {
-                        return( <React.Fragment key={index}>
+                        return( <React.Fragment key={index} >
+                        <div className="one-ingredient">
                                     <input className="add-ingredient" type="text" value={ingredients[index]} onChange={(evt) => handleChange(evt, index)} />
+                                    <img src={"https://themealdb.com/images/ingredients/" + ingredients[index] + ".png"} width="40px" alt=""/>
                                     {
                                         ingredients.length > 1 && <button className="ingredient-delete" onClick={(evt) => removeIngredientBar(evt, index)}><i className="fas fa-trash-alt"></i></button>
                                     }
                                     <br/>
+                                    </div>
                                 </React.Fragment>
                         )
                     })

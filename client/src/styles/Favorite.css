@@ -1,0 +1,27 @@
+.isFavorite .coeur-vide {
+  display: none;
+}
+
+.isFavorite:hover .coeur-vide {
+  display: inline-block;
+}
+
+.isFavorite:hover .coeur-plein {
+  display: none;
+}
+
+.isNotFavorite .coeur-plein {
+  display: none;
+}
+
+.isNotFavorite:hover .coeur-plein {
+  display: inline-block;
+}
+
+.isNotFavorite:hover .coeur-vide {
+  display: none;
+}
+
+.coeur-vide {
+    color: grey;
+}
