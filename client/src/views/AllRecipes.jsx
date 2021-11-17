@@ -65,12 +65,12 @@ export default class AllRecipes extends Component {
         })
         .then((response) => {
             this.setState({ recipes: response.data });
-            console.log("i have fetched(?) this data: ", response.data)
         })
         .catch((err) => console.error(err))
   };
 
-  
+  backToSearch = () => {
+  }
 
   render() {
     if (!this.state.recipes) return <div>Loading...</div>;
@@ -91,6 +91,7 @@ export default class AllRecipes extends Component {
             );
           })}
         </div>
+        <button onClick={this.backToSearch}>Back to my search</button>
       </>
     );
   }
