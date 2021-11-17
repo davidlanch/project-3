@@ -3,7 +3,7 @@ import APIHandler from "../api/handler";
 import "./../styles/Favorite.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import faHeartB from "@fortawesome/free-regular-svg-icons/faHeart";
+import {faHeartB} from "@fortawesome/free-regular-svg-icons/faHeart";
 import { useAuth } from "../auth/UserContext";
 
 
