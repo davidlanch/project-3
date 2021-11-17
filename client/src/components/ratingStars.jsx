@@ -16,7 +16,7 @@ const RatingStars = (props) => {
 
     const fetchRates = async () => {
         try {
-          const res = await APIHandler.get("/rates" + props.match.params.id);
+          const res = await APIHandler.get("/rates");
           console.log("what is this",res)
           
         } catch (err) {

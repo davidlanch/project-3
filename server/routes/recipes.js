@@ -24,7 +24,7 @@ router.post("/recipe/create", uploader.single("image"), async (req, res, next) =
  
   req.body.quantities = req.body.quantities.split(",");
   req.body.ingredients = req.body.ingredients.split(",")
-  
+  console.log(req.body.ingredients)
 
   try {
     const newRecipe = await recipeModel.create({ ...req.body, image: req.file.path,  }); //  req.file.path  => provided by cloudinary's response

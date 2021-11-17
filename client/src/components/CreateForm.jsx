@@ -26,7 +26,7 @@ class CreateForm extends Component {
   handleSubmit = async (e) => {
     e.preventDefault(); // prevent the form to reload
     // destructuring the state
-    const { title, difficulty, ingredients, quantities } = this.state;
+    const { title, difficulty, ingredients, category, quantities, instructions } = this.state;
     // accessing the image out of the ref
     const file = this.state.image.current.files[0]; // target the image file associated to the input[type=file]
     const user = this.props.userContext.currentUser._id;
@@ -38,6 +38,8 @@ class CreateForm extends Component {
     uploadData.append("difficulty", difficulty); // create a key [age] on the formDate
     uploadData.append("ingredients", ingredients); // create a key [color] on the formDate
     uploadData.append("quantities", quantities);
+    uploadData.append("category", category);
+    uploadData.append("instructions", instructions);
     uploadData.append("image", file);
     uploadData.append("author", user);
     try {
