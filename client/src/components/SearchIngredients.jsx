@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router';
+import './../styles/SearchIngredients.css';
 
 function SearchIngredients(props) {
-    console.log("the ingredients i am trying to use in search ingredients: ", props?.ingredientsFromHome||[""])
     const [ingredients, setIngredients] = useState(props?.ingredientsFromHome||[""]);
 
     // console.log("the ingredients are: ", ingredients)
 
     useEffect(() => {
         if (typeof props.onIngredientInput === "function") {
+        console.log("i am in use effect and the ingredients are: ", ingredients)
         props.onIngredientInput(ingredients)}
     }, [ingredients])
 
@@ -25,8 +26,10 @@ function SearchIngredients(props) {
     }
 
     const handleChange = (evt, index) => {
+        console.log("yep smtg definitely changed")
         let newArray = [...ingredients];
         newArray[index] = evt.target.value;
+        console.log("and the new ingredients are...", newArray)
         setIngredients(newArray)
     }
 
@@ -36,16 +39,16 @@ function SearchIngredients(props) {
                 {
                     ingredients.map((el, index) => {
                         return( <React.Fragment key={index}>
-                                    <input name="ingredient" type="text" value={ingredients[index]} onChange={(evt) => handleChange(evt, index)} />
+                                    <input className="add-ingredient" type="text" value={ingredients[index]} onChange={(evt) => handleChange(evt, index)} />
                                     {
-                                        ingredients.length > 1 && <button onClick={(evt) => removeIngredientBar(evt, index)}><i className="fas fa-trash-alt"></i></button>
+                                        ingredients.length > 1 && <button className="ingredient-delete" onClick={(evt) => removeIngredientBar(evt, index)}><i className="fas fa-trash-alt"></i></button>
                                     }
                                     <br/>
                                 </React.Fragment>
                         )
                     })
                 }
-                {(ingredients.length<5) && <button onClick={addIngredientBar}>+</button>}
+                {(ingredients.length<5) && <button className="ingredient-add-button" onClick={addIngredientBar}><i className="fas fa-plus-circle"></i></button>}
             </form>
         </div>
     )
