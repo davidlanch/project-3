@@ -65,7 +65,7 @@ export default function Favorite(props) {
 
   return (
     <div>
-      {isFavorite ? <button className="isFavorite" onClick={handleClick}><FontAwesomeIcon className="coeur-plein" icon={faHeart} size="2x" color="grey"/><i className="far fa-heart coeur-vide fa-2x"></i></button> : <button className= "isNotFavorite" onClick= {handleClick}><FontAwesomeIcon className="coeur-plein" icon={faHeart} /><i className="far fa-heart coeur-vide"></i></button>}
+      {isFavorite ? <button className="isFavorite" onClick={handleClick}><FontAwesomeIcon className="coeur-plein" icon={faHeart} size="2x" color="#d18110"/><i className="far fa-heart coeur-vide fa-2x"></i></button> : <button className= "isNotFavorite" onClick= {handleClick}><FontAwesomeIcon className="coeur-plein" icon={faHeart} size="2x" color="#d18110" /><i className="far fa-heart coeur-vide fa-2x"></i></button>}
     </div>
 
   );

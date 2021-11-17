@@ -5,7 +5,11 @@ import "./../styles/MyRecipes.css";
 import { Link } from "react-router-dom";
 import APIHandler from "../api/handler";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faEdit, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faEdit,
+  faPlusSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import SimpleCard from "../components/SimpleCard";
 import { useAuth } from "./../auth/UserContext";
 
@@ -52,32 +56,45 @@ export default function MyRecipes() {
 
     <div className="my-recipes">
       <h1>My recipes</h1>
-      <Link to= {"/profile/my-recipes/create"}>
-      <FontAwesomeIcon icon={faPlusSquare}/>
+      {recipes.length === 0 && (
+        <div className="text">
+          {" "}
+          You don't have any recipes yet. Add a recipe !
+        </div>
+      )}
+      <Link to={"/profile/my-recipes/create"} className="container">
+        <button className="ingredient-add-button">
+          <i className="fas fa-plus-circle"></i>{" "}
+        </button>
       </Link>
-
-        {recipes.map((element) => {
-          return (
-            <div key={element._id} className="all-recipes">
-              <SimpleCard recipe={element}></SimpleCard>
-              <div>
+<div className="list-my-recipes">
+      {recipes.map((element) => {
+        return (
+          <div key={element._id} className="all-recipes">
+            <SimpleCard recipe={element}></SimpleCard>
+            <div >
               <Link to={"/profile/my-recipes/update/" + element._id}>
+                <FontAwesomeIcon
+                  icon={faEdit}
+                  className="edit"
+                  style={{ cursor: "pointer" }}
+                 
+                  onClick={() => handleEdit(element._id)}
+                />
+              </Link>
               <FontAwesomeIcon
-          icon={faEdit} style= {{cursor: "pointer"}}
-          onClick={() => handleEdit(element._id)
-          }
-        />
-       </Link>
-        <FontAwesomeIcon
-          icon={faTrash} style= {{cursor: "pointer"}}
-            onClick={() => handleDelete(element._id)}
-        />
-              </div>
- 
+                icon={faTrash}
+                className="trash"
+                style={{ cursor: "pointer" }}
+               
+                onClick={() => handleDelete(element._id)}
+              />
             </div>
-          );
-        })}
-
+          </div>
+          
+        );
+      })}
+    </div>
     </div>
   );
 }

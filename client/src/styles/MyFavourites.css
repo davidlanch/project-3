@@ -1,0 +1,22 @@
+.list-favorites {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* margin: 25px; */
+    gap:40px;
+    text-align: center;
+    
+}
+
+.link-recipe {
+    text-decoration: none;
+    color: var(--orange-color);
+    font-size: 22px;
+    /* font-weight: bold; */
+}
+
+.link-recipe:hover {
+   
+    font-weight: bolder;
+}
