@@ -10,19 +10,19 @@ export default function Signin(props) {
   const [email, setEmail] = useState("admin@foobarbaz.io");
   const [password, setPassword] = useState("12345");
   const { isLoggedIn, setCurrentUser } = useAuth();
-  // const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const apiRes = await APIHandler.post("/signin", { email, password });
       setCurrentUser(apiRes.data.currentUser);
-      // setIsError(false)
+      setIsError(false)
       console.log("HERE>>>", apiRes.data.currentUser)
     } catch (err) {
       setCurrentUser(null);
       console.log("HERE")
-      // setIsError(true)
+      setIsError(true)
       // status, error
     }
   };
@@ -35,7 +35,7 @@ export default function Signin(props) {
       {/* <label className="label" htmlFor="email">
         email
       </label> */}
-      {/* {isError === true && <div>invalid credentials</div>} */}
+      {isError === true && <div className="error title">invalid credentials</div>}
       <input
         className="input"
         placeholder="email"

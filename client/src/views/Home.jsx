@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import SearchIngredients from "./../components/SearchIngredients.jsx";
+import { Link } from "react-router-dom";
 import './../styles/Home.css';
 
 export default function Home(props) {
@@ -22,7 +23,9 @@ export default function Home(props) {
                 <SearchIngredients onIngredientInput={onHomeIngredientInput}/>
                 <button className="find-recipe-btn" onClick={findYourRecipe}>Find your recipe</button>
             </div>
+            <Link to="/all-recipes">
             <img className="fridge" src="openingFridge.gif" alt="fridge opening" />
+            </Link>
         </div>
     )
 }

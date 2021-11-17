@@ -1,48 +1,84 @@
 .simple-card {
-    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.15);
-    border-radius: 15px;
-    width: 400px;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  width: 380px;
+  height: 255px;
+  position: relative;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
 }
 
 .simple-card:hover {
-    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.45);
 }
 .simple-card img {
-    width: 40%;
-    border-radius: 10px;
+  width: 45%;
+  border-radius: 10px;
 }
 /* .simple-card img:hover {
     opacity: 90%;
 } */
 
+.image-recipe {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .title-simple-card {
-    font-size: 25px;
-    color: var(--orange-color);
-    width: 400px;
-    height: 87px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0px;
+  font-size: 20px;
+  color: var(--orange-color);
+  width: 380px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  padding-top: 5px;
 }
 
 .title-difficulty {
-    margin: 0;
+  margin: 0;
+  font-size: 15px;
 }
 
 .simple-card .link {
-    text-decoration: none;
-    color: black;
-
+  text-decoration: none;
+  color: black;
 }
 
 .title-simple-card:hover {
-    text-decoration: underline var(--orange-color)
+  text-decoration: underline var(--orange-color);
 }
 
+.isNotFavorite .coeur-plein {
+  display: none;
+}
+
+.isNotFavorite:hover .coeur-plein {
+  display: inline-block;
+}
+
+.isNotFavorite:hover .coeur-vide {
+  display: none;
+}
+
+.favorite {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: absolute;
+  right: 10px;
+  font-size: large;
+}
+
+.premiere-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center
+}
+
+.coeur-vide {
+    color: grey;
+}

@@ -8,11 +8,15 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../auth/UserContext";
 import Comment from "../components/Comment";
 import StarReating from "../components/ratingStars"
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 
 function Recipe(props) {
+  console.log("one recipe says HEY I GOT YOUR PROPS YES YES well maybe", props.location.previousSearchParams)
   const [recipe, setRecipe] = useState([]);
   const [image, setImage] = useState([]);
+  const steps = new RegExp(/[0-9]+\./, 'g');
+  const noSteps = new RegExp(/\.\s/, 'g');
   
   const { currentUser } = useAuth();
 
@@ -35,22 +39,13 @@ function Recipe(props) {
   };
   console.log("this is the", recipe);
 
-  // const fetchImages = async () => {
-  //   let arrayImages = []
-  //   if (recipe.ingredients?.length !== 0) {
-  //     for (let i=0; i<recipe.ingredients?.length; i++) {
-  //       let url = "https://themealdb.com/images/ingredients/" + "Red%20Wine.png"
-  //       arrayImages= [...arrayImages, url]
-  //     }
-  //   }
-  //   setImage(arrayImages);
-  // }
 
   return (
     <>
-    <div>
-           <Link to="./">back to all recipes</Link>
-       </div>
+      <div className="back-links">
+           <Link to="./">Back to all recipes</Link>
+           <Link to={{pathname: "/all-recipes", searchFromOneRecipe: props.location.previousSearchParams}}>Back to my search</Link>
+      </div>
       <div className="shadow-drop-2-center wrapper">
         <div>
           <img src={recipe.image} alt={recipe.title} />
@@ -71,14 +66,21 @@ function Recipe(props) {
             );
           })}
         </div>
-        <div>
-          <p>{recipe.instructions}</p>
+        <div className="instructions-list">
+          {steps.test(recipe.instructions)}
+          <ul>
+            {
+              steps.test(recipe.instructions) ? 
+              recipe.instructions?.split(steps).map((instruction) => <li>{instruction}</li>) :
+              recipe.instructions?.split(noSteps).map((instruction) => <li>{instruction}</li>)
+            }
+          </ul>
         </div>
         <div>
           <h2>Comments</h2>
           <Comment userId={currentUser?._id} recipeId={props.match.params.id}/>
         </div>
-      </div>
+      </div>      
     </>
   );
 }
