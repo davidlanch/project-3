@@ -1,0 +1,23 @@
+.ingredient-add-button {
+    border: none;
+    background-color: var(--white-color);
+    color: var(--orange-color);
+    font-size: 30px;
+    margin: 5px;
+}
+
+.ingredient-delete {
+    border: none;
+    background-color: var(--white-color);
+    color: var(--orange-color);
+    font-size: 15px;
+}
+
+.add-ingredient {
+    margin: 5px;
+    height: 30px;
+    padding: 5px;
+    font-size: 20px;
+    border: grey;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.12);
+}

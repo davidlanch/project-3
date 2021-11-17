@@ -45,12 +45,10 @@ router.get("/all-recipes/:id([a-z0-9]{24})", (req, res) => {
 })
 
 router.get("/all-recipes", (req, res) => {
-    console.log("this is the req query ", req.query)
 
     // ----------- if the query is empty, get all recipes ------------
     // i will probably remove this soon
     if (Object.keys(req.query).length === 0) {
-      console.log("yep query is empty")
       recipeModel
         .find()
         .populate("author")
@@ -87,7 +85,6 @@ router.get("/all-recipes", (req, res) => {
       .populate("author")
       .then((recipes) => {
         res.status(200).json(recipes)
-        console.log("i did a search i am a good route :') here is what I found: ", recipes)
       })
       .catch((err) => console.error(err))
     }

@@ -18,11 +18,10 @@ export default class AllRecipes extends Component {
   componentDidMount() {
     // if we came from Home, we have to use the location parameters
     const url = new URLSearchParams(this.props.location.search)
-    let ingredientParams = [];
-    if (typeof url === 'String' && url.includes("'")) ingredientParams = url.get('ingredients').split(',')
+    let ingredientParams = [""];
+    if (typeof url.get('ingredients') === "string") ingredientParams = url.get('ingredients').split(',')
     console.log("yes here are the ingredient params: ", ingredientParams)
     
-    // const ingredientParams = this.props.location
     this.setState({ingredientFilter: ingredientParams}, () => this.fetchData())
     
   }
@@ -56,8 +55,6 @@ export default class AllRecipes extends Component {
 
   // The function calls the API to get the data corresponding to the 3 filters
   fetchData = () => {
-    console.log("i did your fucking search ok this is not on me i'm a good function")
-    console.log("i used this data that you gave me", this.state.ingredientFilter)
     APIHandler
         .get("/all-recipes", {
             params: {

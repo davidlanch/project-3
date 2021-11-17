@@ -25,7 +25,7 @@ export default function FilterMenu(props) {
 
   return (
     <div className="search-menu">
-      <div>
+        <div className="search-bar-with-btn">
         <form>
           <input
             className="search-bar"
@@ -34,14 +34,14 @@ export default function FilterMenu(props) {
             onChange={props.onNameInput}
           ></input>
         </form>
-        <button onClick={toggleMenu}>
+        <button className="filter-btn" onClick={toggleMenu}>
           <i className="fal fa-sliders-v"></i>
         </button>
-      </div>
+        </div>
       {showMenu && (
         <div className="filter-menu">
           <div className="category-menu">
-            <h3>Select a type of recipe</h3>
+            <h3>Categories</h3>
             <div className="all-categories">
               {categories.map((category) => {
                 return (
@@ -57,8 +57,9 @@ export default function FilterMenu(props) {
             </div>
           </div>
           <div className="ingredients-menu">
-            <h3>Manage your ingredients</h3>
-            <SearchIngredients ingredientsFromHome={props.ingredientsFromHome}/>
+            <h3>Ingredients</h3>
+            <SearchIngredients           onIngredientInput={props.onIngredientInput}
+ ingredientsFromHome={props.ingredientsFromHome}/>
           </div>
         </div>
       )}
