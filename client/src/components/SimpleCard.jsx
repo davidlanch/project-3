@@ -17,19 +17,19 @@ class SimpleCard extends Component {
             <div className="simple-card">
             <div className="favorite">
             {this.props.userContext.isLoggedIn === true && (<Favorite handler={this.props.handler} id={this.props.recipe._id}/>)}
-            {this.props.userContext.isLoggedIn === false && (<Link to="/sign-in" className="isNotFavorite"><FontAwesomeIcon className="coeur-plein" icon={faHeart} size="2x" color="grey" /><i className="far fa-heart coeur-vide fa-2x"></i></Link>)}
+            {this.props.userContext.isLoggedIn === false && (<Link to="/sign-in" className="isNotFavorite"><FontAwesomeIcon className="coeur-plein" icon={faHeart} size="2x" color="#d18110" /><i className="far fa-heart coeur-vide fa-2x"></i></Link>)}
 </div>
 
  
            
             {/* {this.props.userContext.isLoggedIn === true && (<Favorite handler={this.props.handler} id={this.props.recipe._id}/>)} */}
-            {this.props.userContext.isLoggedIn === false && (<Link to="/sign-in"><i className="far fa-heart"></i></Link>)}
+       
 
             <Link to={{pathname:"/all-recipes/" + this.props.recipe._id, previousSearchParams: this.props.previousSearchParams}} className="link">
            
             
-            <img src={this.props.recipe.image}  alt="photo-recioe" />
-           
+
+            <img src={this.props.recipe.image}  alt="photo-recipe" />
                 <h1 className="title-simple-card">{this.props.recipe.title}</h1>
                
                 <p className= "title-difficulty"><i>{this.props.recipe.category}</i></p>

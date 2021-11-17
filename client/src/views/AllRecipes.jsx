@@ -80,6 +80,7 @@ export default class AllRecipes extends Component {
   };
 
   render() {
+    console.log("these are the recipes on all recipes", this.state.recipes)
     if (!this.state.recipes) return <div>Loading...</div>;
     return (
       <>
@@ -90,20 +91,29 @@ export default class AllRecipes extends Component {
           ingredientsFromHome={this.state.ingredientFilter}
         />
        
-        <div className="list-recipes">
-          {this.state.recipes.map((element) => {
-            return (
-              <div key={element._id}>
-                <SimpleCard previousSearchParams={
-                    {name: this.state.nameFilter,
-                    ingredients: this.state.ingredientFilter,
-                    category: this.state.categoryFilter}
-                  } recipe={element}>
-                  </SimpleCard>
-              </div>
-            );
-          })}
-        </div>
+        {
+          this.state.recipes.length ?
+
+          <div className="list-recipes">
+            {this.state.recipes.map((element) => {
+              return (
+                <div key={element._id}>
+                  <SimpleCard previousSearchParams={
+                      {name: this.state.nameFilter,
+                      ingredients: this.state.ingredientFilter,
+                      category: this.state.categoryFilter}
+                    } recipe={element}>
+                    </SimpleCard>
+                </div>
+              );
+            })}
+          </div>
+
+          : <div>
+            <p>There are no recipes matching these criteria</p>
+              <i className="far fa-times-circle"></i>           
+            </div>
+        }
       </>
     );
   }

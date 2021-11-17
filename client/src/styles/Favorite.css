@@ -23,5 +23,5 @@
 }
 
 .coeur-vide {
-    color: grey;
+    color: var(--orange-color);
 }

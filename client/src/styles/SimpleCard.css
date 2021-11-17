@@ -13,8 +13,11 @@
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.45);
 }
 .simple-card img {
-  width: 45%;
   border-radius: 10px;
+  max-width:45%;
+  max-height:70%;
+  width: auto;
+  height: auto;
 }
 /* .simple-card img:hover {
     opacity: 90%;
@@ -80,5 +83,5 @@
 }
 
 .coeur-vide {
-    color: grey;
+    color: var(--orange-color);
 }
