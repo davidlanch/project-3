@@ -18,7 +18,8 @@ export default class AllRecipes extends Component {
   componentDidMount() {
     // if we came from Home, we have to use the location parameters
     const url = new URLSearchParams(this.props.location.search)
-    const ingredientParams = url.get('ingredients').split(',') || [];
+    let ingredientParams = [];
+    if (typeof url === 'String' && url.includes("'")) ingredientParams = url.get('ingredients').split(',')
     console.log("yes here are the ingredient params: ", ingredientParams)
     
     // const ingredientParams = this.props.location
