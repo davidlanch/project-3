@@ -24,8 +24,8 @@ class Updateform extends Component {
 
   componentDidMount = async () => {
     try {
-      const recipeInfo = await APIHandler.get("/all-recipes/" + this.props.match.params.id + "/edit");
-     console.log(recipeInfo)
+      const recipeInfo = await APIHandler.get("/all-recipes/" + this.props.match.params.id );
+     console.log("what is this",recipeInfo)
       this.setState({
           title: recipeInfo.data.title,
          
@@ -39,7 +39,7 @@ class Updateform extends Component {
     return (
       <>
         <form>
-          <h1>create your own recipe!</h1>
+          <h1>Update your recipe!</h1>
           <input
             name="title"
             type="text"

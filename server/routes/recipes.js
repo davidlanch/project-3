@@ -34,7 +34,7 @@ router.post("/recipe/create", uploader.single("image"), async (req, res, next) =
   }
 });
 
-router.patch("/recipe/update/:id([a-z0-9]{24})/edit", uploader.single("image"), async  (req, res) => {
+router.patch("/recipe/update/:id([a-z0-9]{24})", uploader.single("image"), async  (req, res) => {
   
   try {
     const updateRecipe = await recipeModel.findByIdAndUpdate(

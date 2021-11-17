@@ -61,7 +61,7 @@ export default function MyRecipes() {
             <div key={element._id} className="all-recipes">
               <SimpleCard recipe={element}></SimpleCard>
               <div>
-              <Link to={"/profile/my-recipes/" + element._id}>
+              <Link to={"/profile/my-recipes/update/" + element._id}>
               <FontAwesomeIcon
           icon={faEdit} style= {{cursor: "pointer"}}
           onClick={() => handleEdit(element._id)
