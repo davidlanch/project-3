@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import APIHandler from "../api/handler.js";
 import { withAuth } from "../auth/UserContext.js";
+import "./../styles/createForm.css"
+
 
 class CreateForm extends Component {
   // using the constructor form to associate a ref
@@ -16,6 +18,7 @@ class CreateForm extends Component {
       quantities: [],
       quantity: "",
       category:"",
+      instructions:"",
       image: React.createRef(), // create a reference to attach to the virtual DOM
     };
   }
@@ -83,8 +86,11 @@ class CreateForm extends Component {
     console.log("this is the ingrdients", this.state);
     return (
       <>
-        <form>
-          <h1>create your own recipe!</h1>
+      <h1 className="title">Create your own recipe!</h1>
+      <div className="general-wrap">
+      
+        <form className="form-wrap bounce-in-top">
+          
           <input
             name="title"
             type="text"
@@ -135,6 +141,14 @@ class CreateForm extends Component {
             value={this.state.quantity}
             onChange={this.handleChange}
           />
+          <input
+            name="instructions"
+            type="text"
+            placeholder="instructions"
+            value={this.state.instructions}
+            onChange={this.handleChange}
+          />
+          
           <button onClick={this.addIngredientBar}>+</button>
 
           {/* THE REF IS HERE */}
@@ -142,22 +156,17 @@ class CreateForm extends Component {
           <button onClick={this.handleSubmit}>ok</button>
         </form>
 
-        <div>
+        <div className="info-box">
           <h1>information</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Ingredients</th>
-              </tr>
-            </thead>
+          <table className="table">
             <tbody>
-              <tr>
+              <tr className="table-title">
                 <th>Ingredient</th>
                 <th>Quantity</th>
               </tr>
               {this.state.ingredients.map((element, i) => {
                 return (
-                  <tr>
+                  <tr className="ingredients">
                     <td key={i}>{element}</td>
                     <td>{this.state.quantities[i]}</td>
                     <button onClick={(evt) => this.removeIngredientBar(evt, this.index)}><i className="fas fa-trash-alt"></i></button>
@@ -166,6 +175,7 @@ class CreateForm extends Component {
               })}
             </tbody>
           </table>
+        </div>
         </div>
       </>
     );
