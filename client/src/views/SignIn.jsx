@@ -16,8 +16,11 @@ export default function Signin(props) {
     try {
       const apiRes = await APIHandler.post("/signin", { email, password });
       setCurrentUser(apiRes.data.currentUser);
+      console.log("HERE>>>", apiRes.data.currentUser)
     } catch (err) {
       setCurrentUser(null);
+      console.log("HERE")
+      // status, error
     }
   };
 
