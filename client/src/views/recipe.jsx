@@ -7,6 +7,8 @@ import AllRecipes from "./AllRecipes";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/UserContext";
 import Comment from "../components/Comment";
+import StarReating from "../components/ratingStars"
+
 
 function Recipe(props) {
   const [recipe, setRecipe] = useState([]);
@@ -53,7 +55,7 @@ function Recipe(props) {
         <div>
           <img src={recipe.image} alt={recipe.title} />
           <h1>{recipe.title}</h1>
-          <p>⭐️⭐️⭐️⭐️⭐️</p>
+          <StarReating infoRecipe={props}/>
         </div>
         <div className="difficulties">
           <h2>{recipe.difficulty}</h2>

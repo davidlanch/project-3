@@ -34,6 +34,20 @@ router.post("/recipe/create", uploader.single("image"), async (req, res, next) =
   }
 });
 
+router.patch("/recipe/update/:id([a-z0-9]{24})/edit", uploader.single("image"), async  (req, res) => {
+  
+  try {
+    const updateRecipe = await recipeModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.status(200).json(updateRecipe);
+  } catch (err) {
+    next(err);
+  }
+})
+
 router.get("/all-recipes/:id([a-z0-9]{24})", (req, res) => {
   console.log("REQ BODY", req.params.id)
   recipeModel
@@ -96,7 +110,7 @@ router.get("/all-recipes", (req, res) => {
   router.get("/all-recipes/add-to-favorite/:userId/:recipeId", async (req, res, next) => {
     
     try {
-        const updatedRecipe = await userModel.findByIdAndUpdate(req.params.userId, {$push:{favorites: req.params.recipeId}});
+        const updatedRecipe = await userModel.findByIdAndUpdate(req.params.userId, {$push:{favorites: req.params.recipeId}}, {new: true});
         res.status(200).json(updatedRecipe);
         console.log("updated recipe", updatedRecipe);
       } catch (err) {
@@ -106,7 +120,7 @@ router.get("/all-recipes", (req, res) => {
 
   router.get("/all-recipes/remove-from-favorite/:userId/:recipeId", async (req, res, next) => {
     try {
-        const updatedRecipe = await userModel.findByIdAndUpdate(req.params.userId, {$pull:{favorites: req.params.recipeId}});
+        const updatedRecipe = await userModel.findByIdAndUpdate(req.params.userId, {$pull:{favorites: req.params.recipeId}}, {new: true});
         res.status(200).json(updatedRecipe);
         console.log("updated recipe", updatedRecipe);
       } catch (err) {
