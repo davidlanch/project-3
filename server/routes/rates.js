@@ -12,7 +12,7 @@ router.get("/rates", async (req, res) => {
   
 
   try {
-    const takeRate = await ratingModel.find({author});
+    const takeRate = await ratingModel.find();
     console.log("you are in rate",takeRate)
   } catch (err) {
     next(err);

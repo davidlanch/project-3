@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import APIHandler from "../api/handler.js";
 import { withAuth } from "../auth/UserContext.js";
 import "./../styles/createForm.css"
+import './../styles/SearchIngredients.css';
 
 
 class CreateForm extends Component {
@@ -143,6 +144,8 @@ class CreateForm extends Component {
             value={this.state.quantity}
             onChange={this.handleChange}
           />
+
+          <button onClick={this.addIngredientBar}><i className="fas fa-plus-circle"></i></button>
           <input
             name="instructions"
             type="text"
@@ -151,11 +154,11 @@ class CreateForm extends Component {
             onChange={this.handleChange}
           />
           
-          <button onClick={this.addIngredientBar}>+</button>
+          
 
           {/* THE REF IS HERE */}
           <input ref={this.state.image} name="image" type="file" />
-          <button onClick={this.handleSubmit}>ok</button>
+          <button onClick={this.handleSubmit}>Create</button>
         </form>
 
         <div className="info-box">
