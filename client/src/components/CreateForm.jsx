@@ -75,13 +75,16 @@ class CreateForm extends Component {
   };
 
   removeIngredientBar = (e, index) => {
+    console.log("le gros batard",index)
     e.preventDefault()
     const deleteIngredient = [...this.state.ingredients]
     deleteIngredient.splice(index, 1)
+    const deleteQuantity = [...this.state.quantities]
+    deleteQuantity.splice(e, 1)
+    
     this.setState({
         ingredients: deleteIngredient,
-        quantities: deleteIngredient,
-        
+        quantities: deleteQuantity 
       });
 
   }
