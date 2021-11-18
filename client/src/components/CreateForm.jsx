@@ -18,7 +18,7 @@ class CreateForm extends Component {
       ingredients: [],
       quantities: [],
       quantity: "",
-      category:"",
+      category:"Meat",
       instructions:"",
       image: React.createRef(), // create a reference to attach to the virtual DOM
     };

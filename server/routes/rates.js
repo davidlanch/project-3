@@ -8,11 +8,11 @@ const userModel = require("./../model/users")
 
 
 router.get("/rates", async (req, res) => {
-   
+   console.log("you are here in rates")
   
 
   try {
-    const takeRate = await ratingModel.find();
+    const takeRate = await ratingModel.find({rate});
     console.log("you are in rate",takeRate)
   } catch (err) {
     next(err);

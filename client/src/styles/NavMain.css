@@ -1,7 +1,6 @@
 .nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: var(--white-color);
     height: 8vh;
     padding: 10px;
@@ -22,6 +21,7 @@
   color: var(--orange-color);
   left: 50%;
   transform: translate(-50%);
+  margin: 0px;
 }
 
 .link.signin {
