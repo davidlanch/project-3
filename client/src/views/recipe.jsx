@@ -12,7 +12,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 
 
 function Recipe(props) {
-  console.log("one recipe says HEY I GOT YOUR PROPS YES YES well maybe", props.location.previousSearchParams)
   const [recipe, setRecipe] = useState([]);
   const [image, setImage] = useState([]);
   const steps = new RegExp(/[0-9]+\./, 'g');
@@ -39,13 +38,12 @@ function Recipe(props) {
   };
   console.log("this is the", recipe);
 
-
   return (
     <>
-      <div className="back-links">
-           <Link to="./">Back to all recipes</Link>
-           <Link to={{pathname: "/all-recipes", searchFromOneRecipe: props.location.previousSearchParams}}>Back to my search</Link>
-      </div>
+      {props.location.state?.showLinks && <div className="back-links-container">
+           <Link to="./" className="back-links">Back to all recipes</Link>
+           <Link to={{pathname: "/all-recipes", searchFromOneRecipe: props.location.state}} className="back-links">Back to my search</Link>
+      </div>}
       <div className="shadow-drop-2-center wrapper">
         <div>
           <img src={recipe.image} alt={recipe.title} />
