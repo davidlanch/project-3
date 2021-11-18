@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import './../styles/SearchIngredients.css';
 
 function SearchIngredients(props) {
-    const [ingredients, setIngredients] = useState(props?.ingredientsFromHome||props?.ingredientsFromState || [""]);
+    const [ingredients, setIngredients] = useState(props?.ingredientsFromHome || props?.ingredientsFromState || [""]);
 
     // console.log("the ingredients are: ", ingredients)
 
@@ -11,6 +11,7 @@ function SearchIngredients(props) {
         if (typeof props.onIngredientInput === "function") {
         console.log("i am in use effect and the ingredients are: ", ingredients)
         props.onIngredientInput(ingredients)}
+        //setIngredients(props?.ingredientsFromState)
     }, [ingredients])
 
     const addIngredientBar = (e) => {
