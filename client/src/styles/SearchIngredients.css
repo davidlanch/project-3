@@ -12,6 +12,13 @@
     color: var(--orange-color);
     font-size: 30px;
     margin: 15px;
+   
+}
+
+.container-ingredient {
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .ingredient-delete {
@@ -19,6 +26,7 @@
     background-color: var(--white-color);
     color: var(--orange-color);
     font-size: 18px;
+
 }
 
 .add-ingredient {
@@ -28,6 +36,7 @@
     font-size: 20px;
     border: grey;
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.12);
+    position: relative;
 }
 
 .one-ingredient {
@@ -35,6 +44,7 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+    position: relative;
 }
 
 .ingredient-image:hover {
@@ -46,4 +56,5 @@
 
 .ingredient-image {
     width: 40px;
+
 }

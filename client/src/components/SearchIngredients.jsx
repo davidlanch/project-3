@@ -40,17 +40,23 @@ function SearchIngredients(props) {
                     ingredients.map((el, index) => {
                         return(
                         <div className="one-ingredient" key={index} >
-                                    <input className="add-ingredient" type="text" value={ingredients[index]} onChange={(evt) => handleChange(evt, index)} />
+                                    
                                     <img className="ingredient-image" src={"https://themealdb.com/images/ingredients/" + ingredients[index] + ".png"} alt=""/>
+                                    <input className="add-ingredient" type="text" value={ingredients[index]} onChange={(evt) => handleChange(evt, index)} />
                                     {
-                                        ingredients.length > 1 && <button className="ingredient-delete" onClick={(evt) => removeIngredientBar(evt, index)}><i className="fas fa-trash-alt"></i></button>
+                                        ingredients.length > 0 && <button className="ingredient-delete" onClick={(evt) => removeIngredientBar(evt, index)}><i className="fas fa-trash-alt"></i></button>
                                     }
+                                    
                                     <br/>
+                                   
                         </div>
                         )
                     })
+                    
                 }
+              
                 {(ingredients.length<5) && <button className="ingredient-add-button" onClick={addIngredientBar}><i className="fas fa-plus-circle"></i></button>}
+   
             </form>
         </div>
     )
