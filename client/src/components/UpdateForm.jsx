@@ -111,10 +111,15 @@ class Updateform extends Component {
   removeIngredientBar = (e, index) => {
     e.preventDefault();
     const deleteIngredient = [...this.state.ingredients];
+    const deleteQuantities = [...this.state.quantities]
+    console.log("avant", deleteIngredient)
+    console.log("index", index)
     deleteIngredient.splice(index, 1);
+    deleteQuantities.splice(index,1)
+    console.log("apres", deleteIngredient)
     this.setState({
       ingredients: deleteIngredient,
-      quantities: deleteIngredient,
+      quantities: deleteQuantities,
     });
   };
 
@@ -210,7 +215,7 @@ class Updateform extends Component {
                     <td>{this.state.quantities[i]}</td>
                     <button
                       onClick={(evt) =>
-                        this.removeIngredientBar(evt, this.index)
+                        this.removeIngredientBar(evt, i)
                       }
                     >
                       <i className="fas fa-trash-alt"></i>
