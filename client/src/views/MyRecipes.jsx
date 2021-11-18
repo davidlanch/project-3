@@ -25,7 +25,6 @@ export default function MyRecipes() {
   const fetchRecipes = async () => {
     try {
       const res = await APIHandler.get("/my-recipes/" + currentUser._id);
-      console.log("api res => ", res);
       setRecipes(res.data);
     } catch (err) {
       console.error(err);

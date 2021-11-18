@@ -47,17 +47,7 @@ class Signup extends Component {
   };
 
   handleImage = (e) => {
-    // console.log("Signup@handle image", e.target.files[0]);
     this.setState({ avatar: e.target.files[0] }
-    //   , () => {
-    //   const reader = new FileReader();
-    //   reader.onloadend = () => {
-    //     // when the fileREader ends  ...
-    //     const baseString = reader.result; // get the image as a base64 encoded string
-    //     this.setState({ tmpAvatar: baseString }); // set the tmp avatar as an image source before upload
-    //   };
-    //   reader.readAsDataURL(this.state.avatar); // read the file from the local disk
-    // }
     );
   };
 
@@ -65,7 +55,6 @@ class Signup extends Component {
 
   render() 
   {
-    console.log(this.props);
     const { isLoggedIn } = this.props.userContext;
     const { email, password, username, tmpAvatar } = this.state;
     return isLoggedIn ? (
@@ -78,9 +67,6 @@ class Signup extends Component {
         onChange={this.handleChange}
       >
         <h1 className="title">Sign up</h1>
-        {/* <label className="label" htmlFor="email">
-          email
-        </label> */}
         {this.state.isError === true && <div className="error">email already registered, please sign in</div>}
         <input
           className="input"
@@ -90,9 +76,6 @@ class Signup extends Component {
           name="email"
           defaultValue={email}
         />
-        {/* <label className="label" htmlFor="username">
-          username
-        </label> */}
         <input
           className="input"
           placeholder="username"
@@ -101,13 +84,6 @@ class Signup extends Component {
           name="username"
           defaultValue={username}
         />
-        {/* <label className="label" htmlFor="avatar">
-          avatar
-        </label> */}
-        {/* <IconAvatarAdmin avatar={tmpAvatar} clbk={this.handleImage} /> */}
-        {/* <label className="label" htmlFor="password">
-          password
-        </label> */}
         <input
           className="input"
           placeholder="password"

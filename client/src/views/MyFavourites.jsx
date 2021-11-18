@@ -10,16 +10,12 @@ export default function MyFavourites() {
   const [FavouritesList, setList] = useState([]);
 
   useEffect(() => {
-    // const favoritesObjectId = currentUser?.favorites.populate("favorites");
-    // console.log("favorite object", favoritesObjectId)
-    // setList(currentUser?.favorites)
     fetchFavorites();
   }, [currentUser]);
 
   const fetchFavorites = () => {
     APIHandler.get("/" + currentUser?._id)
       .then((user) => {
-        console.log("USER", user.data.favorites);
         setList(user.data.favorites);
       })
       .catch((error) => console.error(error));

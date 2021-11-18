@@ -21,7 +21,7 @@ function Recipe(props) {
   const noSteps = new RegExp(/\.\s/, "g");
   const { currentUser } = useAuth();
 
-  console.log("current user", currentUser);
+
   // Similar a componentDidMount y componentDidUpdate:
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function Recipe(props) {
       console.error(err);
     }
   };
-  console.log("this is the", recipe);
+  
 
   return (
     <>

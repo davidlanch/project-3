@@ -41,7 +41,6 @@ export default class AllRecipes extends Component {
     // If the user clicked on All recipes, we need to reset all parameters of the search to empty
 
     if (prevProps === this.props) return
-    console.log("this props location is", this.props.location)
     if (this.props.location?.reset) {
       this.setState({
         ingredientFilter: [""], 
