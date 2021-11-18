@@ -32,7 +32,6 @@ export default function FilterMenu(props) {
     booleansForCheckbox = categories.map((category) =>
       props.state?.categoryFilter.includes(category)
     );
-    console.log("the array i made for categories", booleansForCheckbox);
   });
 
   return (

@@ -44,7 +44,7 @@ export default class AllRecipes extends Component {
     if (prevProps === this.props) return
     if (this.props.location?.reset) {
       this.setState({
-        ingredientFilter: [""], 
+        ingredientFilter: [], 
         nameFilter: "", 
         categoryFilter: []
       }, () => this.fetchData())
