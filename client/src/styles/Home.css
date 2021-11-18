@@ -1,12 +1,12 @@
 .main-home {
     display: flex;  
-    justify-content: space-between; 
+    justify-content: space-evenly;
+    align-items: center;
     margin: 50px;
 }
 
 .left-home {
-    max-width: 40%;
-    margin: auto;
+    width: 40%;
     font-size: 2em;
 }
 
@@ -24,9 +24,13 @@
     width: 200px;
 }
 
-.fridge {
-    max-width: 40%;
+.fridge-container {
+    width: 40%;
     height: auto;
+}
+
+.fridge {
+    width: 100%;
 }
 
 
