@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import './../styles/SearchIngredients.css';
 
 function SearchIngredients(props) {
-    const [ingredients, setIngredients] = useState(props?.ingredientsFromHome||[""]);
+    const [ingredients, setIngredients] = useState(props?.ingredientsFromHome||props?.ingredientsFromState || [""]);
 
     // console.log("the ingredients are: ", ingredients)
 
