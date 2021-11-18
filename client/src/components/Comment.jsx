@@ -55,7 +55,7 @@ class Comment extends Component {
       <div className="comments">
         <div className="header">
           <h1 className="title">Leave a comment</h1>
-          <form action="" className="form">
+          <form action="" >
             <input
               type="text"
               className="input"
@@ -64,7 +64,7 @@ class Comment extends Component {
             />
 
             {this.props.userContext.isLoggedIn === true && (
-              <button className="btn" onClick={this.handleSubmit}>
+              <button  onClick={this.handleSubmit}>
                 send !
               </button>
             )}
@@ -77,7 +77,8 @@ class Comment extends Component {
             )}
           </form>
         </div>
-
+        
+   
         {!this.state.comments.length ? (
           <div className="comment"> no comments yet </div>
         ) : (
@@ -100,7 +101,8 @@ class Comment extends Component {
             );
           })
         )}
-      </div>
+        </div>
+      
     );
   }
 }
