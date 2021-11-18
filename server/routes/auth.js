@@ -24,8 +24,7 @@ const minPasswordLength = 4;
 // https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 
 router.post("/signup", uploader.single("avatar"), (req, res, next) => {
-  // console.log("file ?", req.file);
-  // console.log(req.body);
+  
   let errorMsg = "";
   const { username, password, email } = req.body;
   // @todo : best if email validation here or check with a regex in the User model

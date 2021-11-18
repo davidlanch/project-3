@@ -25,7 +25,6 @@ export default function MyRecipes() {
   const fetchRecipes = async () => {
     try {
       const res = await APIHandler.get("/my-recipes/" + currentUser._id);
-      console.log("api res => ", res);
       setRecipes(res.data);
     } catch (err) {
       console.error(err);
@@ -71,7 +70,7 @@ export default function MyRecipes() {
       {recipes.map((element) => {
         return (
           <div key={element._id} className="all-recipes">
-            <SimpleCard recipe={element}></SimpleCard>
+            <SimpleCard showLinks={false} recipe={element}></SimpleCard>
             <div >
               <Link to={"/profile/my-recipes/update/" + element._id}>
                 <FontAwesomeIcon

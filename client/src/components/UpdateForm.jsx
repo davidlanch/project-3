@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import APIHandler from "../api/handler.js";
 import { withAuth } from "../auth/UserContext.js";
-import "./../styles/createForm.css"
+import "./../styles/createForm.css";
+import { useAuth } from "./../auth/UserContext";
 
 class Updateform extends Component {
   // using the constructor form to associate a ref
@@ -10,45 +11,60 @@ class Updateform extends Component {
     super(props); // MANDATORY !!!!
     this.state = {
       title: "",
-      author: "",
-      difficulty: "easy",
+      author: this.props.userContext.currentUser._id,
+      difficulty: "",
       ingredient: "",
       ingredients: [],
       quantities: [],
       quantity: "",
-      category:"",
-      instructions:"",
-      image: React.createRef(), // create a reference to attach to the virtual DOM
+      category: "",
+      instructions: "",
+      image: "",
+      imageInput: React.createRef(), // create a reference to attach to the virtual DOM
     };
   }
 
-  componentDidMount = async () =>{
-      try{
-        const recipeInfo =  await APIHandler.get("/all-recipes/" + this.props.match.params.id);
-        console.log("hoaoaoaoao",recipeInfo)
-        this.setState({
-            title: recipeInfo.data.title,
-            difficulty: recipeInfo.data.difficulty,
-            ingredient: recipeInfo.data.ingredient,
-            ingredients: recipeInfo.data.ingredients,
-            quantities: recipeInfo.data.quantities,
-            quantity: recipeInfo.data.quantity,
-            category: recipeInfo.data.category,
-            instructions: recipeInfo.data.instructions,
-            image: recipeInfo.data.image
-            
-        })
-        } catch (error) {console.error(error)}     
-  }
+  componentDidMount = async () => {
+    try {
+      const recipeInfo = await APIHandler.get(
+        "/all-recipes/" + this.props.match.params.id
+      );
+      console.log("hoaoaoaoao", recipeInfo);
+      this.setState({
+        title: recipeInfo.data.title,
+        difficulty: recipeInfo.data.difficulty,
+        ingredient: recipeInfo.data.ingredient,
+        ingredients: recipeInfo.data.ingredients,
+        quantities: recipeInfo.data.quantities,
+        quantity: recipeInfo.data.quantity,
+        category: recipeInfo.data.category,
+        instructions: recipeInfo.data.instructions,
+        image: recipeInfo.data.image,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   handleSubmit = async (e) => {
     e.preventDefault(); // prevent the form to reload
     // destructuring the state
-    const { title, difficulty, ingredients, category, quantities, instructions, image } = this.state;
+    const {
+      title,
+      author,
+      difficulty,
+      ingredients,
+      category,
+      quantities,
+      instructions,
+      image,
+    } = this.state;
     // accessing the image out of the ref
-    // const file = this.state.image; 
+    // const file = this.state.image;
     // console.log("this is file",file)// target the image file associated to the input[type=file]
     const uploadData = new FormData(); // create a form data => an object to send as post body
+
+    const finalImage = this.state.imageInput.current.files[0] || image;
 
     // appending the keys / values pairs to the FormData
     uploadData.append("title", title); // create a key [name] on the formDate
@@ -57,12 +73,14 @@ class Updateform extends Component {
     uploadData.append("quantities", quantities);
     uploadData.append("category", category);
     uploadData.append("instructions", instructions);
-    uploadData.append("image", image);
-    
+    uploadData.append("image", finalImage);
+
     try {
-      await APIHandler.patch("/recipe/update/" + this.props.match.params.id, uploadData);
-      // this.props.history.push("./")
-      console.log("this is this props", this.props.history);
+      await APIHandler.patch(
+        "/recipe/update/" + this.props.match.params.id,
+        uploadData
+      );
+      this.props.history.push("/profile/my-recipes");
     } catch (err) {
       console.error(err);
     }
@@ -73,8 +91,8 @@ class Updateform extends Component {
       [e.target.name]: e.target.value,
     });
   };
-  
-    addIngredientBar = (e) => {
+
+  addIngredientBar = (e) => {
     console.log("you are", e);
     e.preventDefault();
     let newIngredients = [...this.state.ingredients];
@@ -91,19 +109,18 @@ class Updateform extends Component {
   };
 
   removeIngredientBar = (e, index) => {
-    e.preventDefault()
-    const deleteIngredient = [...this.state.ingredients]
-    deleteIngredient.splice(index, 1)
+    e.preventDefault();
+    const deleteIngredient = [...this.state.ingredients];
+    deleteIngredient.splice(index, 1);
     this.setState({
-        ingredients: deleteIngredient,
-        quantities: deleteIngredient,
-        
-      });
+      ingredients: deleteIngredient,
+      quantities: deleteIngredient,
+    });
+  };
 
-  }
-  
   render() {
-    console.log("this is the ingrdients",this.props.match.params.id);
+    console.log("this is the ingrdients", this.props.match.params.id);
+    console.log("state", this.state);
     return (
       <>
         <form>
@@ -131,7 +148,7 @@ class Updateform extends Component {
             value={this.state.category}
             onChange={this.handleChange}
             className="input"
-           >
+          >
             <option value="Meat">Meat</option>
             <option value="Dessert">Dessert</option>
             <option value="Miscellaneous">Miscellaneous</option>
@@ -165,11 +182,11 @@ class Updateform extends Component {
             value={this.state.instructions}
             onChange={this.handleChange}
           />
-          
+
           <button onClick={this.addIngredientBar}>+</button>
 
           {/* THE REF IS HERE */}
-          <input ref={this.state.image} name="image" type="file" />
+          <input ref={this.state.imageInput} name="image" type="file" />
           <button onClick={this.handleSubmit}>ok</button>
         </form>
 
@@ -191,7 +208,13 @@ class Updateform extends Component {
                   <tr>
                     <td key={i}>{element}</td>
                     <td>{this.state.quantities[i]}</td>
-                    <button onClick={(evt) => this.removeIngredientBar(evt, this.index)}><i className="fas fa-trash-alt"></i></button>
+                    <button
+                      onClick={(evt) =>
+                        this.removeIngredientBar(evt, this.index)
+                      }
+                    >
+                      <i className="fas fa-trash-alt"></i>
+                    </button>
                   </tr>
                 );
               })}

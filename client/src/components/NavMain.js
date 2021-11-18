@@ -27,7 +27,8 @@ export default function NavMain() {
       <NavLink
         className="link title"
         activeClassName="is-active"
-        to="/all-recipes"
+        to={{pathname: "/all-recipes", reset: true}}
+
       >
         All Recipes
       </NavLink>

@@ -54,10 +54,36 @@ font-weight: lighter;
   justify-content: center;
   text-align: center;
   list-style-position: inside;
+  margin: 10px;
+  padding: 10px;
+}
+
+.back-links-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  gap: 20px;
+}
+
+.back-links {
+  text-decoration: none;
+  color: black;
+  background-color: var(--white-color);
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 0.8em;
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.back-links:hover {
+  font-weight: bolder;
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.45);
 }
 
 .instructions-list li {
   padding: 3px;
+  font-size: 20px;
 }
 
 .coeur-vide, .coeur-plein {
