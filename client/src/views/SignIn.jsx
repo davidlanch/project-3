@@ -7,8 +7,8 @@ import APIHandler from "./../api/handler.js";
 import "./../styles/form.css";
 
 export default function Signin(props) {
-  const [email, setEmail] = useState("admin@foobarbaz.io");
-  const [password, setPassword] = useState("12345");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { isLoggedIn, setCurrentUser } = useAuth();
   const [isError, setIsError] = useState(false)
 
