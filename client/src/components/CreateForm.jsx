@@ -136,7 +136,7 @@ class CreateForm extends Component {
             <option value="Vegetarian">Vegetarian</option>
             <option value="Breakfast">Breakfast</option>
           </select>
-
+          <div className="ingredients-creation">
           <input
             name="ingredient"
             type="text"
@@ -151,9 +151,11 @@ class CreateForm extends Component {
             value={this.state.quantity}
             onChange={this.handleChange}
           />
+          
+          <button className="create-button" onClick={this.addIngredientBar}>Add an ingredient</button>
 
-          <button onClick={this.addIngredientBar}><i className="fas fa-plus-circle"></i></button>
-          <input
+          </div>
+          <textarea className="instructions-recipe"
             name="instructions"
             type="text"
             placeholder="instructions"
@@ -165,11 +167,11 @@ class CreateForm extends Component {
 
           {/* THE REF IS HERE */}
           <input ref={this.state.image} name="image" type="file" />
-          <button onClick={this.handleSubmit}>Create</button>
+          <button className="create-button create-ingredients-button" onClick={this.handleSubmit}> lets Create the recipe</button>
         </form>
 
         <div className="info-box">
-          <h1>information</h1>
+          <h1>Your ingredients!</h1>
           <table className="table">
             <tbody>
               <tr className="table-title">
@@ -181,7 +183,7 @@ class CreateForm extends Component {
                   <tr className="ingredients">
                     <td key={i}>{element}</td>
                     <td>{this.state.quantities[i]}</td>
-                    <button onClick={(evt) => this.removeIngredientBar(evt, this.index)}><i className="fas fa-trash-alt"></i></button>
+                    <button  onClick={(evt) => this.removeIngredientBar(evt, this.index)}><i className="fas fa-trash-alt"></i></button>
                   </tr>
                 );
               })}
