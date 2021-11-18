@@ -23,6 +23,13 @@ export default function FilterMenu(props) {
     setShowMenu(!showMenu);
   };
 
+  let booleansForCheckbox = categories.map((category) => props.state?.categoryFilter.includes(category))
+
+  useEffect(() => {
+    booleansForCheckbox = categories.map((category) => props.state?.categoryFilter.includes(category))
+    console.log("the array i made for categories", booleansForCheckbox)
+  })
+
   return (
     <div className="search-menu">
         <div className="search-bar-with-btn">
@@ -32,6 +39,7 @@ export default function FilterMenu(props) {
             type="text"
             placeholder="Search by name"
             onChange={props.onNameInput}
+            value={props.state.nameFilter}
           ></input>
         </form>
         <button className="filter-btn" onClick={toggleMenu}>
@@ -43,12 +51,14 @@ export default function FilterMenu(props) {
           <div className="category-menu">
             <h3>Categories</h3>
             <div className="all-categories">
-              {categories.map((category) => {
+              {categories.map((category, index) => {
                 return (
                   <span key={category} className="one-category">
                     <input
+                      checked={booleansForCheckbox[index]}
                       type="checkbox"
                       onChange={(e) => props.onCategoryInput(e, category)}
+                 
                     />
                     <label>{category}</label>
                   </span>
@@ -58,7 +68,7 @@ export default function FilterMenu(props) {
           </div>
           <div className="ingredients-menu">
             <h3>Ingredients</h3>
-            <SearchIngredients           onIngredientInput={props.onIngredientInput}
+            <SearchIngredients onIngredientInput={props.onIngredientInput}
  ingredientsFromHome={props.ingredientsFromHome}/>
           </div>
         </div>

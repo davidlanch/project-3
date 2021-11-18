@@ -25,7 +25,7 @@ class SimpleCard extends Component {
             {/* {this.props.userContext.isLoggedIn === true && (<Favorite handler={this.props.handler} id={this.props.recipe._id}/>)} */}
        
 
-            <Link to={{pathname:"/all-recipes/" + this.props.recipe._id, previousSearchParams: this.props.previousSearchParams}} className="link">
+            <Link to={{pathname:"/all-recipes/" + this.props.recipe._id, state: {...this.props.previousSearchParams, showLinks: this.props.showLinks}}} className="link">
            
             
 

@@ -40,6 +40,7 @@ export default function MyFavourites() {
           return (
             <div key={element._id} className="all-recipes">
               <SimpleCard
+                showLinks={false}
                 recipe={element}
                 handler={fetchFavorites}
               ></SimpleCard>

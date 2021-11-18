@@ -71,7 +71,7 @@ export default function MyRecipes() {
       {recipes.map((element) => {
         return (
           <div key={element._id} className="all-recipes">
-            <SimpleCard recipe={element}></SimpleCard>
+            <SimpleCard showLinks={false} recipe={element}></SimpleCard>
             <div >
               <Link to={"/profile/my-recipes/update/" + element._id}>
                 <FontAwesomeIcon

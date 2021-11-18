@@ -11,16 +11,17 @@ export default class AllRecipes extends Component {
       recipes: null,
       nameFilter: null,
       ingredientFilter: [],
-      categoryFilter: []
+      categoryFilter: [],
+      searchString: ""
     };
   }
 
   componentDidMount() {
+    let reset = this.props.location?.reset || false;
     // if we came from Home, we have to use the location parameters
     const url = new URLSearchParams(this.props.location.search)
     let ingredientParams = [""];
     if (typeof url.get('ingredients') === "string") ingredientParams = url.get('ingredients').split(',')
-    console.log("yes here are the ingredient params: ", ingredientParams)
     
     // if we came from the details of one recipe, we want to display the same search as before
     // with props.location.searchFromOneRecipe
@@ -29,13 +30,28 @@ export default class AllRecipes extends Component {
     if (this.props.location.searchFromOneRecipe) {
       ingredientParams = this.props.location.searchFromOneRecipe.ingredients;
       name = this.props.location.searchFromOneRecipe.name;
-      categories = this.props.location.searchFromOneRecipe.categories;
+      categories = this.props.location.searchFromOneRecipe.category;
     }
 
     this.setState({ingredientFilter: ingredientParams, nameFilter: name, categoryFilter: categories}, () => this.fetchData())
     
   }
 
+  componentDidUpdate (prevProps) {
+    // If the user clicked on All recipes, we need to reset all parameters of the search to empty
+
+    if (prevProps === this.props) return
+    console.log("this props location is", this.props.location)
+    if (this.props.location?.reset) {
+      this.setState({
+        ingredientFilter: [""], 
+        nameFilter: "", 
+        categoryFilter: []
+      }, () => this.fetchData())
+      this.props.location.reset = false;
+      console.log("ok i get that you are trying to reset")
+  }
+  }
   // Three functions handling the changes in the 3 parts of the filter
 
   onNameInput = (evt) => {
@@ -58,7 +74,6 @@ export default class AllRecipes extends Component {
 
   onIngredientInput = (ingredients) => {
     this.setState({ ingredientFilter: [...ingredients] }, () => {
-      console.log("my ingredients", this.state.ingredientFilter)
       this.fetchData();
     });
   }
@@ -79,8 +94,9 @@ export default class AllRecipes extends Component {
         .catch((err) => console.error(err))
   };
 
+
+
   render() {
-    console.log("these are the recipes on all recipes", this.state.recipes)
     if (!this.state.recipes) return <div>Loading...</div>;
     return (
       <>
@@ -89,6 +105,8 @@ export default class AllRecipes extends Component {
           onCategoryInput={this.onCategoryInput}
           onIngredientInput={this.onIngredientInput}
           ingredientsFromHome={this.state.ingredientFilter}
+          state={this.state}
+
         />
        
         {
@@ -98,11 +116,14 @@ export default class AllRecipes extends Component {
             {this.state.recipes.map((element) => {
               return (
                 <div key={element._id}>
-                  <SimpleCard previousSearchParams={
+                  <SimpleCard 
+                    previousSearchParams={
                       {name: this.state.nameFilter,
                       ingredients: this.state.ingredientFilter,
                       category: this.state.categoryFilter}
-                    } recipe={element}>
+                    } 
+                    recipe={element}
+                    showLinks={true}>
                     </SimpleCard>
                 </div>
               );

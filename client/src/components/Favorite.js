@@ -15,7 +15,7 @@ export default function Favorite(props) {
   useEffect(() => {
     const tmp = currentUser?.favorites.includes(props.id);
     setFavorite(tmp)
-    console.log("PROPS", props.id, "is favorite", isFavorite, "list Favorites", currentUser.favorites)
+    // console.log("PROPS", props.id, "is favorite", isFavorite, "list Favorites", currentUser.favorites)
 
   }, [currentUser]);
 
