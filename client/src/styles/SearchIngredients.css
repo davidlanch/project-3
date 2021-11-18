@@ -11,14 +11,14 @@
     background-color: var(--white-color);
     color: var(--orange-color);
     font-size: 30px;
-    margin: 5px;
+    margin: 15px;
 }
 
 .ingredient-delete {
     border: none;
     background-color: var(--white-color);
     color: var(--orange-color);
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .add-ingredient {

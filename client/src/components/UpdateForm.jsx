@@ -25,7 +25,7 @@ class Updateform extends Component {
   componentDidMount = async () =>{
       try{
         const recipeInfo =  await APIHandler.get("/all-recipes/" + this.props.match.params.id);
-        console.log(recipeInfo)
+        console.log("hoaoaoaoao",recipeInfo)
         this.setState({
             title: recipeInfo.data.title,
             difficulty: recipeInfo.data.difficulty,
@@ -34,8 +34,9 @@ class Updateform extends Component {
             quantities: recipeInfo.data.quantities,
             quantity: recipeInfo.data.quantity,
             category: recipeInfo.data.category,
-            instructions: recipeInfo.data.instructions
-           
+            instructions: recipeInfo.data.instructions,
+            image: recipeInfo.data.image
+            
         })
         } catch (error) {console.error(error)}     
   }
@@ -43,9 +44,10 @@ class Updateform extends Component {
   handleSubmit = async (e) => {
     e.preventDefault(); // prevent the form to reload
     // destructuring the state
-    const { title, difficulty, ingredients, category, quantities, instructions } = this.state;
+    const { title, difficulty, ingredients, category, quantities, instructions, image } = this.state;
     // accessing the image out of the ref
-    const file = this.state.image.current.files[0]; // target the image file associated to the input[type=file]
+    // const file = this.state.image; 
+    // console.log("this is file",file)// target the image file associated to the input[type=file]
     const uploadData = new FormData(); // create a form data => an object to send as post body
 
     // appending the keys / values pairs to the FormData
@@ -55,11 +57,11 @@ class Updateform extends Component {
     uploadData.append("quantities", quantities);
     uploadData.append("category", category);
     uploadData.append("instructions", instructions);
-    uploadData.append("image", file);
+    uploadData.append("image", image);
     
     try {
       await APIHandler.patch("/recipe/update/" + this.props.match.params.id, uploadData);
-    //   this.props.history.push("./")
+      // this.props.history.push("./")
       console.log("this is this props", this.props.history);
     } catch (err) {
       console.error(err);
