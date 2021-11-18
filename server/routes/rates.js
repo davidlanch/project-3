@@ -8,7 +8,7 @@ const userModel = require("./../model/users")
 
 
 router.get("/rates", async (req, res) => {
-   
+   console.log("you are here in rates")
   
 
   try {
