@@ -184,11 +184,7 @@ class CreateForm extends Component {
                   <tr className="ingredients">
                     <td key={i}>{element}</td>
                     <td>{this.state.quantities[i]}</td>
-<<<<<<< HEAD
-                    <button  onClick={(evt) => this.removeIngredientBar(evt, this.index)}><i className="fas fa-trash-alt"></i></button>
-=======
                     <button onClick={(evt) => this.removeIngredientBar(evt, i)}><i className="fas fa-trash-alt"></i></button>
->>>>>>> 7a91e4ba285e9c5663d88c947a427971c3c573a8
                   </tr>
                 );
               })}
