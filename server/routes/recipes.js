@@ -40,13 +40,34 @@ router.patch("/recipe/update/:id([a-z0-9]{24})", uploader.single("image"), async
   req.body.ingredients = req.body.ingredients.split(",")
   
   try {
-    const updatedRecipe = await recipeModel.findByIdAndUpdate(
-      req.params.id,  {...req.body, image: req.file.path},
-      { new: true }
-    );
+    // if (req.file.path) {
+    //   const updatedRecipe = await recipeModel.findByIdAndUpdate(
+    //     req.params.id,  {...req.body, image: req.file.path},
+    //     { new: true }
+    //   );
+    // } else {
+
+    const updateVal = {
+      ...req.body,
+      image: req.file ? req.file.path : req.body.image
+    }
+
+    console.log(updateVal)
+
+      const updatedRecipe = await recipeModel.findByIdAndUpdate(
+        req.params.id,  updateVal,
+        { new: true }
+      );
+
+    // }
+  
+    // console.log("req file path", req.file.path)
     res.status(200).json(updatedRecipe);
   } catch (err) {
     next(err);
+    // console.log("req file path error", req.file)
+    console.log("req bodyr", req.body)
+    // console.log("req file path", req.file.path)
   }
 });
 

@@ -9,7 +9,11 @@
   border-radius: 15px;
   color: var(--orange-color);
 }
-
+.error {
+  /* background-color: var(--orange-color); */
+  color: var(--orange-color);
+  font-weight: bolder;
+}
 .form-wrap input {
   border: none;
   box-shadow: 0 0 10px 0px rgb(0 0 0 / 50%);

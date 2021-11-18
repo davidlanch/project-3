@@ -21,6 +21,7 @@ class CreateForm extends Component {
       category:"",
       instructions:"",
       image: React.createRef(), // create a reference to attach to the virtual DOM
+      error:false
     };
   }
 
@@ -49,6 +50,9 @@ class CreateForm extends Component {
       console.log("this is this props", this.props.history);
     } catch (err) {
       console.error(err);
+      this.setState({
+        error: true
+      })
     }
   };
 
@@ -93,7 +97,7 @@ class CreateForm extends Component {
       <div className="general-wrap">
       
         <form className="form-wrap bounce-in-top">
-          
+          {(this.state.error === true) && <div className="error">Please fill in all the values</div>}
           <input
             name="title"
             type="text"
