@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchIngredients from "./SearchIngredients";
+import { Link } from "react-router-dom";
 
 import "./../styles/filterMenu.css";
 
@@ -23,16 +24,19 @@ export default function FilterMenu(props) {
     setShowMenu(!showMenu);
   };
 
-  let booleansForCheckbox = categories.map((category) => props.state?.categoryFilter.includes(category))
+  let booleansForCheckbox = categories.map((category) =>
+    props.state?.categoryFilter.includes(category)
+  );
 
   useEffect(() => {
-    booleansForCheckbox = categories.map((category) => props.state?.categoryFilter.includes(category))
-    console.log("the array i made for categories", booleansForCheckbox)
-  })
+    booleansForCheckbox = categories.map((category) =>
+      props.state?.categoryFilter.includes(category)
+    );
+  });
 
   return (
     <div className="search-menu">
-        <div className="search-bar-with-btn">
+      <div className="search-bar-with-btn">
         <form>
           <input
             className="search-bar"
@@ -45,7 +49,7 @@ export default function FilterMenu(props) {
         <button className="filter-btn" onClick={toggleMenu}>
           <i className="fal fa-sliders-v"></i>
         </button>
-        </div>
+      </div>
       {showMenu && (
         <div className="filter-menu">
           <div className="category-menu">
@@ -58,7 +62,6 @@ export default function FilterMenu(props) {
                       checked={booleansForCheckbox[index]}
                       type="checkbox"
                       onChange={(e) => props.onCategoryInput(e, category)}
-                 
                     />
                     <label>{category}</label>
                   </span>
@@ -68,11 +71,23 @@ export default function FilterMenu(props) {
           </div>
           <div className="ingredients-menu">
             <h3>Ingredients</h3>
-            <SearchIngredients onIngredientInput={props.onIngredientInput}
- ingredientsFromHome={props.ingredientsFromHome}/>
+            <SearchIngredients
+              onIngredientInput={props.onIngredientInput}
+              ingredientsFromHome={props.ingredientsFromHome}
+              ingredientsFromState={props.state.ingredientsFilter}
+            />
           </div>
         </div>
       )}
+      {showMenu && (
+        <Link
+          to={{ pathname: "/all-recipes", reset: true }}
+          className="filter-btn"
+        >
+          <i className="fas fa-redo"></i>
+        </Link>
+      )}
+      {/* this line seems idiotic but it's better this way for styling */}
     </div>
   );
 }

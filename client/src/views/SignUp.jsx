@@ -12,9 +12,9 @@ class Signup extends Component {
   state = {
     avatar: '',
     tmpAvatar: "",
-    username: "admin",
-    email: "admin@foobarbaz.io",
-    password: "12345",
+    username: "",
+    email: "",
+    password: "",
     isError: false
   };
   fileInput = React.createRef()

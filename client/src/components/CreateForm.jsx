@@ -79,17 +79,18 @@ class CreateForm extends Component {
   };
 
   removeIngredientBar = (e, index) => {
-    console.log("le gros batard",index)
-    e.preventDefault()
-    const deleteIngredient = [...this.state.ingredients]
-    deleteIngredient.splice(index, 1)
-    const deleteQuantity = [...this.state.quantities]
-    deleteQuantity.splice(e, 1)
-    
+    e.preventDefault();
+    const deleteIngredient = [...this.state.ingredients];
+    const deleteQuantities = [...this.state.quantities]
+    console.log("avant", deleteIngredient)
+    console.log("index", index)
+    deleteIngredient.splice(index, 1);
+    deleteQuantities.splice(index,1)
+    console.log("apres", deleteIngredient)
     this.setState({
-        ingredients: deleteIngredient,
-        quantities: deleteQuantity 
-      });
+      ingredients: deleteIngredient,
+      quantities: deleteQuantities,
+    });
 
   }
   render() {
@@ -183,7 +184,11 @@ class CreateForm extends Component {
                   <tr className="ingredients">
                     <td key={i}>{element}</td>
                     <td>{this.state.quantities[i]}</td>
+<<<<<<< HEAD
                     <button  onClick={(evt) => this.removeIngredientBar(evt, this.index)}><i className="fas fa-trash-alt"></i></button>
+=======
+                    <button onClick={(evt) => this.removeIngredientBar(evt, i)}><i className="fas fa-trash-alt"></i></button>
+>>>>>>> 7a91e4ba285e9c5663d88c947a427971c3c573a8
                   </tr>
                 );
               })}

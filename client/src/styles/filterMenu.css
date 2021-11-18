@@ -9,6 +9,7 @@
     height: 30px;
     padding: 5px;
     border-radius: 4px;
+    font-size: 1.2rem;
     /* border-top: grey;
     border-bottom: grey;
     border-left: grey; */
@@ -65,3 +66,8 @@
     flex-direction: row;
     padding: 5px;
 }
+
+::placeholder {
+    font-size: 1.2rem;
+  }
+
