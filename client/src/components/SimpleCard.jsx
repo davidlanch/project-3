@@ -11,7 +11,6 @@ import { faHeart, faHeartbeat } from "@fortawesome/free-solid-svg-icons";
 class SimpleCard extends Component {
     render() 
     {
-        console.log(this.props.userContext.isLoggedIn)
 
         return (
             <div className="simple-card">

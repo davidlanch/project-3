@@ -21,7 +21,7 @@ function Recipe(props) {
   const noSteps = new RegExp(/\.\s/, "g");
   const { currentUser } = useAuth();
 
-  console.log("current user", currentUser);
+
   // Similar a componentDidMount y componentDidUpdate:
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function Recipe(props) {
       console.error(err);
     }
   };
-  console.log("this is the", recipe);
+  
 
   return (
     <>
@@ -71,7 +71,7 @@ function Recipe(props) {
           <div>
             <img src={recipe.image} alt={recipe.title} />
             <h1>{recipe.title}</h1>
-            <StarReating infoRecipe={props} />
+            {/* <StarReating infoRecipe={props} /> */}
           </div>
 
           <h2 className="difficulties">Level: {recipe.difficulty}</h2>
