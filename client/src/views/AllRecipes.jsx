@@ -3,6 +3,7 @@ import APIHandler from "../api/handler";
 import "./../styles/AllRecipes.css";
 import SimpleCard from "../components/SimpleCard";
 import FilterMenu from "../components/FilterMenu";
+import { Link } from "react-router-dom"
 
 export default class AllRecipes extends Component {
   constructor(props) {
@@ -96,7 +97,13 @@ export default class AllRecipes extends Component {
 
 
   render() {
-    if (!this.state.recipes) return <div>Loading...</div>;
+    if (!this.state.recipes) {
+      return (<div>
+        <p>Loading...</p>
+        <i class="fas fa-spinner fa-pulse"></i>
+      </div>)
+    }
+
     return (
       <>
         <FilterMenu
@@ -131,7 +138,7 @@ export default class AllRecipes extends Component {
 
           : <div>
             <p>There are no recipes matching these criteria</p>
-              <i className="far fa-times-circle"></i>           
+              <Link to={{pathname: "/all-recipes", reset: true}}><i className="far fa-times-circle"></i></Link>           
             </div>
         }
       </>
