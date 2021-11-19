@@ -111,12 +111,12 @@ class Updateform extends Component {
   removeIngredientBar = (e, index) => {
     e.preventDefault();
     const deleteIngredient = [...this.state.ingredients];
-    const deleteQuantities = [...this.state.quantities]
-    console.log("avant", deleteIngredient)
-    console.log("index", index)
+    const deleteQuantities = [...this.state.quantities];
+    console.log("avant", deleteIngredient);
+    console.log("index", index);
     deleteIngredient.splice(index, 1);
-    deleteQuantities.splice(index,1)
-    console.log("apres", deleteIngredient)
+    deleteQuantities.splice(index, 1);
+    console.log("apres", deleteIngredient);
     this.setState({
       ingredients: deleteIngredient,
       quantities: deleteQuantities,
@@ -128,103 +128,110 @@ class Updateform extends Component {
     console.log("state", this.state);
     return (
       <>
-        <form>
-          <h1>Update your recipe!</h1>
-          <input
-            name="title"
-            type="text"
-            placeholder="title"
-            value={this.state.title}
-            onChange={this.handleChange}
-          />
-          <select
-            name="difficulty"
-            value={this.state.difficulty}
-            onChange={this.handleChange}
-            className="input"
-          >
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="difficult">difficult</option>
-          </select>
+        <h1 className="title">Update your recipe!</h1>
+        <div className="general-wrap">
+          <form className="form-wrap bounce-in-top">
+            <input
+              name="title"
+              type="text"
+              placeholder="title"
+              value={this.state.title}
+              onChange={this.handleChange}
+            />
+            <select
+              name="difficulty"
+              value={this.state.difficulty}
+              onChange={this.handleChange}
+              className="input"
+            >
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="difficult">difficult</option>
+            </select>
 
-          <select
-            name="category"
-            value={this.state.category}
-            onChange={this.handleChange}
-            className="input"
-          >
-            <option value="Meat">Meat</option>
-            <option value="Dessert">Dessert</option>
-            <option value="Miscellaneous">Miscellaneous</option>
-            <option value="Pasta">Pasta</option>
-            <option value="Seafood">Seafood</option>
-            <option value="Side">Side</option>
-            <option value="Starter">Starter</option>
-            <option value="Vegan">Vegan</option>
-            <option value="Vegetarian">Vegetarian</option>
-            <option value="Breakfast">Breakfast</option>
-          </select>
+            <select
+              name="category"
+              value={this.state.category}
+              onChange={this.handleChange}
+              className="input"
+            >
+              <option value="Meat">Meat</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Miscellaneous">Miscellaneous</option>
+              <option value="Pasta">Pasta</option>
+              <option value="Seafood">Seafood</option>
+              <option value="Side">Side</option>
+              <option value="Starter">Starter</option>
+              <option value="Vegan">Vegan</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Breakfast">Breakfast</option>
+            </select>
+            <div className="ingredients-creation">
+              <input
+                name="ingredient"
+                type="text"
+                placeholder="ingredients"
+                value={this.state.ingredient}
+                onChange={this.handleChange}
+              />
+              <input
+                name="quantity"
+                type="text"
+                placeholder="quantities"
+                value={this.state.quantity}
+                onChange={this.handleChange}
+              />
 
-          <input
-            name="ingredient"
-            type="text"
-            placeholder="ingredients"
-            value={this.state.ingredient}
-            onChange={this.handleChange}
-          />
-          <input
-            name="quantity"
-            type="text"
-            placeholder="quantities"
-            value={this.state.quantity}
-            onChange={this.handleChange}
-          />
-          <input
-            name="instructions"
-            type="text"
-            placeholder="instructions"
-            value={this.state.instructions}
-            onChange={this.handleChange}
-          />
+              <button className="create-button" onClick={this.addIngredientBar}>
+                Validate
+              </button>
+            </div>
 
-          <button onClick={this.addIngredientBar}>+</button>
+            <textarea
+              className="instructions-recipe"
+              name="instructions"
+              type="text"
+              placeholder="instructions"
+              value={this.state.instructions}
+              onChange={this.handleChange}
+            />
 
-          {/* THE REF IS HERE */}
-          <input ref={this.state.imageInput} name="image" type="file" />
-          <button onClick={this.handleSubmit}>ok</button>
-        </form>
+            {/* THE REF IS HERE */}
+            <input
+              className="input-file"
+              ref={this.state.imageInput}
+              name="image"
+              type="file"
+            />
+            <button
+              className="create-button create-ingredients-button"
+              onClick={this.handleSubmit}
+            >
+              Update the recipe
+            </button>
+          </form>
 
-        <div>
-          <h1>information</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Ingredients</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Ingredient</th>
-                <th>Quantity</th>
-              </tr>
-              {this.state.ingredients.map((element, i) => {
-                return (
-                  <tr>
-                    <td key={i}>{element}</td>
-                    <td>{this.state.quantities[i]}</td>
-                    <button
-                      onClick={(evt) =>
-                        this.removeIngredientBar(evt, i)
-                      }
-                    >
-                      <i className="fas fa-trash-alt"></i>
-                    </button>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="info-box">
+            <h1>Your ingredients!</h1>
+            <table className="table">
+              <tbody>
+                <tr className="table-title">
+                  <th>Ingredient</th>
+                  <th>Quantity</th>
+                </tr>
+                {this.state.ingredients.map((element, i) => {
+                  return (
+                    <tr className="ingredients">
+                      <td key={i}>{element}</td>
+                      <td>{this.state.quantities[i]}</td>
+                      <img className="ingredient-image" src={"https://themealdb.com/images/ingredients/" + element + ".png"} alt=""/>
+                      <button onClick={(evt) => this.removeIngredientBar(evt, i)}><i className="fas fa-trash-alt"></i></button>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </>
     );
