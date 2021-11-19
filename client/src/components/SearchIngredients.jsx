@@ -4,17 +4,14 @@ import './../styles/SearchIngredients.css';
 
 function SearchIngredients(props) {
     const [ingredients, setIngredients] = useState(props?.ingredientsFromHome || props?.ingredientsFromState || [""]);
-    // console.log("the ingredients are: ", ingredients)
+
+    // ("the ingredients are: ", ingredients)
 
     useEffect(() => {
         if (typeof props.onIngredientInput === "function") {
-        props.onIngredientInput(ingredients)
-        console.log("i am in use effect and the ingredients are: ", ingredients)
-        if (props?.reset) {
-            console.log("reset got to useeffect in searchingredient")
-            setIngredients(props.ingredientsFromState)
-        }
-    }
+     
+        props.onIngredientInput(ingredients)}
+        //setIngredients(props?.ingredientsFromState)
     }, [ingredients])
 
     const addIngredientBar = (e) => {
@@ -30,10 +27,8 @@ function SearchIngredients(props) {
     }
 
     const handleChange = (evt, index) => {
-        console.log("yep smtg definitely changed")
         let newArray = [...ingredients];
         newArray[index] = evt.target.value;
-        console.log("and the new ingredients are...", newArray)
         setIngredients(newArray)
     }
 

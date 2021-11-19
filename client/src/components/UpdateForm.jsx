@@ -7,7 +7,6 @@ import { useAuth } from "./../auth/UserContext";
 class Updateform extends Component {
   // using the constructor form to associate a ref
   constructor(props) {
-    console.log(props);
     super(props); // MANDATORY !!!!
     this.state = {
       title: "",
@@ -29,7 +28,6 @@ class Updateform extends Component {
       const recipeInfo = await APIHandler.get(
         "/all-recipes/" + this.props.match.params.id
       );
-      console.log("hoaoaoaoao", recipeInfo);
       this.setState({
         title: recipeInfo.data.title,
         difficulty: recipeInfo.data.difficulty,
@@ -93,7 +91,6 @@ class Updateform extends Component {
   };
 
   addIngredientBar = (e) => {
-    console.log("you are", e);
     e.preventDefault();
     let newIngredients = [...this.state.ingredients];
     let newQuantities = [...this.state.quantities];
@@ -112,11 +109,8 @@ class Updateform extends Component {
     e.preventDefault();
     const deleteIngredient = [...this.state.ingredients];
     const deleteQuantities = [...this.state.quantities];
-    console.log("avant", deleteIngredient);
-    console.log("index", index);
     deleteIngredient.splice(index, 1);
     deleteQuantities.splice(index, 1);
-    console.log("apres", deleteIngredient);
     this.setState({
       ingredients: deleteIngredient,
       quantities: deleteQuantities,
@@ -124,8 +118,6 @@ class Updateform extends Component {
   };
 
   render() {
-    console.log("this is the ingrdients", this.props.match.params.id);
-    console.log("state", this.state);
     return (
       <>
         <h1 className="title">Update your recipe!</h1>

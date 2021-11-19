@@ -50,7 +50,6 @@ const fetchRecipes = () => {
           // 3 - Formatting the author
 
           const APIuser = await UserModel.findOne({username: "TheMealDb"});
-          console.log(APIuser)
           // Completing the formatted recipe
           const formattedRecipe = {
             title: recipe.strMeal,

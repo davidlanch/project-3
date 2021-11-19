@@ -63,7 +63,7 @@
 .info-box {
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.15);
   border-radius: 15px;
-  width: auto;
+  width: 400px;
   height: auto;
   padding: 25px;
   color: var(--orange-color);
