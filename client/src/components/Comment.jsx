@@ -96,7 +96,8 @@ class Comment extends Component {
                   />
                   <b>{comment.author?.username}</b>
                 </div>
-                <div className="message">{comment.message}</div>
+   
+                <div className="message"><div>{comment.message}</div></div>
               </div>
             );
           })

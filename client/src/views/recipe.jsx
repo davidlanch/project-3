@@ -64,7 +64,7 @@ function Recipe(props) {
           <div>
             <img src={recipe.image} alt={recipe.title} />
             <h1>{recipe.title}</h1>
-            {/* <StarReating infoRecipe={props} /> */}
+            <StarReating infoRecipe={props} />
           </div>
 
           <h2 className="difficulties">Level: {recipe.difficulty}</h2>
