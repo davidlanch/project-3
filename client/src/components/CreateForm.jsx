@@ -153,7 +153,7 @@ class CreateForm extends Component {
             onChange={this.handleChange}
           />
           
-          <button className="create-button" onClick={this.addIngredientBar}>Add an ingredient</button>
+          <button className="create-button" onClick={this.addIngredientBar}>Validate</button>
 
           </div>
           <textarea className="instructions-recipe"
@@ -167,8 +167,8 @@ class CreateForm extends Component {
           
 
           {/* THE REF IS HERE */}
-          <input ref={this.state.image} name="image" type="file" />
-          <button className="create-button create-ingredients-button" onClick={this.handleSubmit}> lets Create the recipe</button>
+          <input className="input-file" ref={this.state.image} name="image" type="file" />
+          <button className="create-button create-ingredients-button" onClick={this.handleSubmit}>Create the recipe</button>
         </form>
 
         <div className="info-box">
@@ -184,6 +184,7 @@ class CreateForm extends Component {
                   <tr className="ingredients">
                     <td key={i}>{element}</td>
                     <td>{this.state.quantities[i]}</td>
+                    <img className="ingredient-image" src={"https://themealdb.com/images/ingredients/" + element + ".png"} alt=""/>
                     <button onClick={(evt) => this.removeIngredientBar(evt, i)}><i className="fas fa-trash-alt"></i></button>
                   </tr>
                 );
