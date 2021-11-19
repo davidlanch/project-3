@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrash,
   faEdit,
-  faPlusSquare,
+  //faPlusSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import SimpleCard from "../components/SimpleCard";
 import { useAuth } from "./../auth/UserContext";

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import "./../styles/SimpleCard.css";
 import Favorite from './Favorite';
-import { useAuth } from "./../auth/UserContext";
+//import { useAuth } from "./../auth/UserContext";
 import { withAuth } from './../auth/UserContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faHeartbeat } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 
 class SimpleCard extends Component {
@@ -28,7 +28,7 @@ class SimpleCard extends Component {
            
             
 
-            <img src={this.props.recipe.image}  alt="photo-recipe" />
+            <img src={this.props.recipe.image}  alt="recipe" />
                 <h1 className="title-simple-card">{this.props.recipe.title}</h1>
                
                 <p className= "title-difficulty"><i>{this.props.recipe.category}</i></p>

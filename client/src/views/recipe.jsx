@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./../styles/ingredients.css";
 import APIHandler from "../api/handler";
-import SearchIngredients from "../components/SearchIngredients";
-import AllRecipes from "./AllRecipes";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/UserContext";
-import { withAuth } from "./../auth/UserContext";
 import Comment from "../components/Comment";
 import StarReating from "../components/ratingStars";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import Favorite from "../components/Favorite";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons/faHeart";
 
 function Recipe(props) {
   const [recipe, setRecipe] = useState([]);
-  const [image, setImage] = useState([]);
+  //const [image, setImage] = useState([]);
   const steps = new RegExp(/[0-9]+\./, "g");
   const noSteps = new RegExp(/\.\s/, "g");
   const { currentUser } = useAuth();

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 // custom tools
 import APIHandler from "./../api/handler.js";
-import IconAvatarAdmin from "./../components/IconAvatarAdmin";
+//import IconAvatarAdmin from "./../components/IconAvatarAdmin";
 import { withAuth } from "./../auth/UserContext";
 // styles
 import "./../styles/form.css";
