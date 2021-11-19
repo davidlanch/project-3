@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import React, { useState } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import OneRecipe from "./views/recipe";
 import NavMain from "./components/NavMain";
@@ -10,7 +9,6 @@ import Signin from "./views/SignIn";
 import SignUp from "./views/SignUp";
 //import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { UserContextProvider } from "./auth/UserContext";
-import Footer from "./components/Footer";
 import AllRecipes from "./views/AllRecipes";
 import MyRecipes from "./views/MyRecipes";
 

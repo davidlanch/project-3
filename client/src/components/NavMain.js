@@ -3,7 +3,6 @@ import React from "react";
 import SignInButton from "./SignInButton";
 import "./../styles/NavMain.css";
 import { useAuth } from "./../auth/UserContext";
-import IconSignOut from "./IconSignOut";
 import ProfileMenu from "./ProfileMenu";
 
 

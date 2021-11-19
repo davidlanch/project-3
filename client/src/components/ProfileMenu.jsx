@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "./../styles/ProfileMenu.css";
 import { Link } from "react-router-dom";
 import IconSignOut from "./IconSignOut";
-import ProfileButton from "./ProfileButton";
+//import ProfileButton from "./ProfileButton";
 import "./../styles/SignInButton.css";
-import { useAuth } from "./../auth/UserContext";
+//import { useAuth } from "./../auth/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCarrot, fas, faSortDown } from "@fortawesome/free-solid-svg-icons";
 

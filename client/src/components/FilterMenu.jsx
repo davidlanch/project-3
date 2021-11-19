@@ -87,7 +87,7 @@ export default function FilterMenu(props) {
           <i className="fas fa-redo"></i>
         </Link>
       )}
-      {/* this line seems idiotic but it's better this way for styling */}
+      {/* this condition on Link seems idiotic but it's better this way for styling */}
     </div>
   );
 }

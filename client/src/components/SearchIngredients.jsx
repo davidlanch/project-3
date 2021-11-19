@@ -4,14 +4,17 @@ import './../styles/SearchIngredients.css';
 
 function SearchIngredients(props) {
     const [ingredients, setIngredients] = useState(props?.ingredientsFromHome || props?.ingredientsFromState || [""]);
-
     // console.log("the ingredients are: ", ingredients)
 
     useEffect(() => {
         if (typeof props.onIngredientInput === "function") {
+        props.onIngredientInput(ingredients)
         console.log("i am in use effect and the ingredients are: ", ingredients)
-        props.onIngredientInput(ingredients)}
-        //setIngredients(props?.ingredientsFromState)
+        if (props?.reset) {
+            console.log("reset got to useeffect in searchingredient")
+            setIngredients(props.ingredientsFromState)
+        }
+    }
     }, [ingredients])
 
     const addIngredientBar = (e) => {

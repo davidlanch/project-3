@@ -18,7 +18,6 @@ export default class AllRecipes extends Component {
   }
 
   componentDidMount() {
-    let reset = this.props.location?.reset || false;
     // if we came from Home, we have to use the location parameters
     const url = new URLSearchParams(this.props.location.search)
     let ingredientParams = [""];
@@ -44,12 +43,11 @@ export default class AllRecipes extends Component {
     if (prevProps === this.props) return
     if (this.props.location?.reset) {
       this.setState({
-        ingredientFilter: [], 
+        ingredientFilter: [""], 
         nameFilter: "", 
         categoryFilter: []
       }, () => this.fetchData())
       this.props.location.reset = false;
-      console.log("ok i get that you are trying to reset")
   }
   }
   // Three functions handling the changes in the 3 parts of the filter
@@ -100,7 +98,7 @@ export default class AllRecipes extends Component {
     if (!this.state.recipes) {
       return (<div>
         <p>Loading...</p>
-        <i class="fas fa-spinner fa-pulse"></i>
+        <i className="fas fa-spinner fa-pulse"></i>
       </div>)
     }
 
@@ -130,7 +128,7 @@ export default class AllRecipes extends Component {
                     } 
                     recipe={element}
                     showLinks={true}>
-                    </SimpleCard>
+                  </SimpleCard>
                 </div>
               );
             })}

@@ -3,13 +3,13 @@ import APIHandler from "../api/handler";
 import "./../styles/Favorite.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeartB } from "@fortawesome/free-regular-svg-icons/faHeart";
+//import { faHeartB } from "@fortawesome/free-regular-svg-icons/faHeart";
 import { useAuth } from "../auth/UserContext";
 
 export default function Favorite(props) {
   const { currentUser, setCurrentUser } = useAuth();
   const [isFavorite, setFavorite] = useState(false);
-  const [listFavorites, setFavoritesList] = useState([]);
+  //const [listFavorites, setFavoritesList] = useState([]);
 
   useEffect(() => {
     const tmp = currentUser?.favorites.includes(props.id);
@@ -45,7 +45,7 @@ export default function Favorite(props) {
     )
       .then((recipe) => {
         if (props.handler) props.handler();
-        const oldFavorites = [...currentUser.favorites];
+        //const oldFavorites = [...currentUser.favorites];
         const newFavorites = recipe.data.favorites;
         setCurrentUser({ ...currentUser, favorites: newFavorites });
       })
