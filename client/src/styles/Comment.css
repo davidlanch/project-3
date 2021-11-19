@@ -96,8 +96,15 @@
   }
   
   .comments .comment .message{
-    position: relative;
-    top: 7px;
+    /* position: relative;
+    top: 7px; */
+    width: 80%;
+    margin-top: 30px;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .comments .comment .avatar {
