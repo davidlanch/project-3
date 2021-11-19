@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavigationArrow from "./../components/NavigationArrow";
 import "./../styles/ingredients.css";
 import APIHandler from "../api/handler";
 import SearchIngredients from "../components/SearchIngredients";

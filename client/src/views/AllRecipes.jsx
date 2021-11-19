@@ -49,7 +49,6 @@ export default class AllRecipes extends Component {
         categoryFilter: []
       }, () => this.fetchData())
       this.props.location.reset = false;
-      console.log("ok i get that you are trying to reset")
   }
   }
   // Three functions handling the changes in the 3 parts of the filter

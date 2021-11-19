@@ -8,7 +8,7 @@ import './../styles/SearchIngredients.css';
 class CreateForm extends Component {
   // using the constructor form to associate a ref
   constructor(props) {
-    console.log(props);
+    
     super(props); // MANDATORY !!!!
     this.state = {
       title: "",
@@ -32,7 +32,7 @@ class CreateForm extends Component {
     // accessing the image out of the ref
     const file = this.state.image.current.files[0]; // target the image file associated to the input[type=file]
     const user = this.props.userContext.currentUser._id;
-    console.log("this is user", user);
+   
     const uploadData = new FormData(); // create a form data => an object to send as post body
 
     // appending the keys / values pairs to the FormData
@@ -47,7 +47,7 @@ class CreateForm extends Component {
     try {
       await APIHandler.post("/recipe/create", uploadData);
       this.props.history.push("./")
-      console.log("this is this props", this.props.history);
+     
     } catch (err) {
       console.error(err);
       this.setState({
@@ -63,7 +63,7 @@ class CreateForm extends Component {
   };
 
   addIngredientBar = (e) => {
-    console.log("you are", e);
+    
     e.preventDefault();
     let newIngredients = [...this.state.ingredients];
     let newQuantities = [...this.state.quantities];
@@ -82,11 +82,10 @@ class CreateForm extends Component {
     e.preventDefault();
     const deleteIngredient = [...this.state.ingredients];
     const deleteQuantities = [...this.state.quantities]
-    console.log("avant", deleteIngredient)
-    console.log("index", index)
+   
     deleteIngredient.splice(index, 1);
     deleteQuantities.splice(index,1)
-    console.log("apres", deleteIngredient)
+   
     this.setState({
       ingredients: deleteIngredient,
       quantities: deleteQuantities,
@@ -94,7 +93,7 @@ class CreateForm extends Component {
 
   }
   render() {
-    console.log("this is the ingrdients", this.state);
+   
     return (
       <>
       <h1 className="title">Create your own recipe!</h1>
