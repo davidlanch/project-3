@@ -184,7 +184,10 @@ class CreateForm extends Component {
                   <tr className="ingredients">
                     <td key={i}>{element}</td>
                     <td>{this.state.quantities[i]}</td>
+<<<<<<< HEAD
                     <img className="ingredient-image" src={"https://themealdb.com/images/ingredients/" + element + ".png"} alt=""/>
+=======
+>>>>>>> b0c6689cd0a80cf3b9d813775cdd2772d3d399ea
                     <button onClick={(evt) => this.removeIngredientBar(evt, i)}><i className="fas fa-trash-alt"></i></button>
                   </tr>
                 );
